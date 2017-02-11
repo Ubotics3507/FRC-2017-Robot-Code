@@ -1,5 +1,7 @@
 
 package org.usfirst.frc.team3507.robot;
+import org.usfirst.frc.team3507.robot.RobotUtil;
+
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 
@@ -13,6 +15,7 @@ import org.usfirst.frc.team3507.robot.subsystems.PracticeDriveTrain;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team3507.robot.commands.DriveTrainTele;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,6 +28,11 @@ public class Robot extends IterativeRobot {
 
 	public static final PracticeDriveTrain drivetrain = new PracticeDriveTrain();
 	public static OI oi;
+	
+	public double speedL;
+	public double speedR;
+	
+	static double deadzone = .01;
 
     Command autonomousCommand;
     SendableChooser<ExampleCommand> chooser;
@@ -34,7 +42,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI();
+		oi = new OI(0);
         chooser = new SendableChooser<ExampleCommand>();
         chooser.addDefault("Default Auto", new ExampleCommand());
 //        chooser.addObject("My Auto", new MyAutoCommand());
@@ -100,7 +108,48 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        Scheduler.getInstance().run();
+        //Scheduler.getInstance().run();
+    	double jAxisRight;
+		double jAxisLeft;
+		
+		jAxisRight = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(4), deadzone);
+		jAxisLeft = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(1), deadzone);
+		
+		arcade(jAxisRight, jAxisLeft);
+		
+		Robot.drivetrain.go(speedR, speedL);
+    	//Robot.drivetrain.go(Robot.oi.driver.getRawAxis(5), Robot.oi.driver.getRawAxis(1));
+    	//Robot.drivetrain.go(RobotUtil.deadzone(Robot.oi.driver.getRawAxis(4), deadzone), RobotUtil.deadzone(Robot.oi.driver.getRawAxis(5), deadzone));
+    	//Robot.drivetrain.go(RobotUtil.deadzone(Robot.oi.driver.getRawAxis(0), deadzone), RobotUtil.deadzone(Robot.oi.driver.getRawAxis(1), deadzone));
+    }
+    
+    public void arcade(double jR, double jL) {
+    	double max;
+    	double sum;
+    	double dif;
+    	
+    	max = Math.abs(jR);
+    	if (Math.abs(jL) > max) max = Math.abs(jL);
+    	sum = jR + jL;
+    	dif = jR - jL;
+    	
+    	if (jL <= 0) {
+    		if (jR >= 0) {
+    			speedL = max;
+    			speedR = -sum;
+    		} else {
+    			speedL = dif;
+    			speedR = max;
+    		}
+    	} else {
+    		if (jR >= 0) {
+    			speedL = dif;
+    			speedR = -max;
+    		} else {
+    			speedL = -max;
+    			speedR = -sum;
+    		}
+    	}
     }
     
     /**

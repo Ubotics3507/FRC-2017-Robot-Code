@@ -6,8 +6,13 @@ package org.usfirst.frc.team3507.robot;
  * floating around.
  */
 public class RobotMap {
-	public static int left = 4;
-	public static int right = 2;
+	public static int leftSlave = 2;
+	public static int rightSlave = 5;
+	public static int leftSlave2 = 3;
+	public static int rightSlave2 = 6;
+	
+	public static int leftMaster = 1;
+	public static int rightMaster = 4;
 	
 	public static int driver = 0;
 	public static int operator = 1;
