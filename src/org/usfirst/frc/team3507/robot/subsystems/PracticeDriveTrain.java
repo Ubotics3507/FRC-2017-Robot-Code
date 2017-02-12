@@ -4,6 +4,7 @@ import org.usfirst.frc.team3507.robot.RobotMap;
 import org.usfirst.frc.team3507.robot.commands.DriveTrainTele;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
 //import edu.wpi.first.wpilibj.CANTalon;
@@ -40,6 +41,8 @@ public class PracticeDriveTrain extends Subsystem {
     	rightSlave2.reverseOutput(true);
     	rightMaster.setInverted(true);
     	
+    	leftMaster.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    	rightMaster.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     }
 	
 	public void initDefaultCommand() {

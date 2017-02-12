@@ -15,6 +15,8 @@ import org.usfirst.frc.team3507.robot.subsystems.PracticeDriveTrain;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team3507.robot.commands.Autonomous;
 import org.usfirst.frc.team3507.robot.commands.DriveTrainTele;
 
 /**
@@ -27,15 +29,20 @@ import org.usfirst.frc.team3507.robot.commands.DriveTrainTele;
 public class Robot extends IterativeRobot {
 
 	public static final PracticeDriveTrain drivetrain = new PracticeDriveTrain();
+	public static final org.usfirst.frc.team3507.robot.subsystems.Intake Intake = new org.usfirst.frc.team3507.robot.subsystems.Intake();
 	public static OI oi;
 	
 	public double speedL;
 	public double speedR;
 	
+	public Autonomous auton;
+	
 	static double deadzone = .01;
 
     Command autonomousCommand;
-    SendableChooser<ExampleCommand> chooser;
+   // SendableChooser<ExampleCommand> chooser;
+   public static SendableChooser tele;
+    SendableChooser auto;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -43,10 +50,22 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI(0);
-        chooser = new SendableChooser<ExampleCommand>();
-        chooser.addDefault("Default Auto", new ExampleCommand());
-//        chooser.addObject("My Auto", new MyAutoCommand());
-        SmartDashboard.putData("Auto mode", chooser);
+		
+		//auto = new Autonomous(6,0.5,0.5)
+		
+		auto= new SendableChooser();
+		auto.addDefault("Auto Drive Only ", new Autonomous(4,0.5,0.5));
+		SmartDashboard.putData("Auto mode", auto);
+		
+		
+//		
+//		tele = new SendableChooser();
+//        //chooser.addDefault("Default tELE", new ExampleCommand());
+//        tele.addDefault("Tele Option", object);
+////        chooser.addObject("My Auto", new MyAutoCommand());
+//        SmartDashboard.putData("Tele", tele);
+        
+        SmartDashboard.putData(Scheduler.getInstance());
     }
 	
 	/**
@@ -72,8 +91,16 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-        autonomousCommand = (Command) chooser.getSelected();
-        
+    	
+//        autonomousCommand = (Command) chooser.getSelected();
+       // Command autoCommand = (Command) chooser.getSelected();
+    	//autoCommand.start();
+    	//auto.int();
+    	Autonomous test = new Autonomous(5,0.5,0.5);
+    	test.execute();
+    	
+ 
+    	
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
 		case "My Auto":
@@ -86,7 +113,7 @@ public class Robot extends IterativeRobot {
 		} */
     	
     	// schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
+      //  if (autonomousCommand != null) autonomousCommand.start();
     }
 
     /**
@@ -118,12 +145,13 @@ public class Robot extends IterativeRobot {
 		arcade(jAxisRight, jAxisLeft);
 		
 		Robot.drivetrain.go(speedR, speedL);
-    	//Robot.drivetrain.go(Robot.oi.driver.getRawAxis(5), Robot.oi.driver.getRawAxis(1));
-    	//Robot.drivetrain.go(RobotUtil.deadzone(Robot.oi.driver.getRawAxis(4), deadzone), RobotUtil.deadzone(Robot.oi.driver.getRawAxis(5), deadzone));
-    	//Robot.drivetrain.go(RobotUtil.deadzone(Robot.oi.driver.getRawAxis(0), deadzone), RobotUtil.deadzone(Robot.oi.driver.getRawAxis(1), deadzone));
+		Robot.Intake.go(RobotUtil.deadzone(Robot.oi.driver.getRawAxis(3), deadzone));
+		
+		SmartDashboard.putNumber("Left", Robot.drivetrain.leftMaster.get());
+		SmartDashboard.putNumber("Right", Robot.drivetrain.rightMaster.get());
     }
     
-    public void arcade(double jR, double jL) {
+     public void arcade(double jR, double jL) {
     	double max;
     	double sum;
     	double dif;

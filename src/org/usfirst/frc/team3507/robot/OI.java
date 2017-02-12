@@ -48,7 +48,7 @@ public class OI {
 	public Button leftBump;
 	public Button rightBump;
 	public static Joystick leftStick = new Joystick(1);
-	public static Joystick rightStick = new Joystick(2);
+	public static Joystick rightStick = new Joystick(4);
 	public Button back;
 	public Button start;
 	public Button leftTrigger;
