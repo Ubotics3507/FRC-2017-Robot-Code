@@ -1,9 +1,10 @@
 package org.usfirst.frc.team3507.robot.commands;
 
 import org.usfirst.frc.team3507.robot.RobotUtil;
+
 import org.usfirst.frc.team3507.robot.OI;
 import org.usfirst.frc.team3507.robot.Robot;
-import org.usfirst.frc.team3507.robot.subsystems.PracticeDriveTrain;
+import org.usfirst.frc.team3507.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -30,7 +31,7 @@ public class DriveTrainTele extends Command {
 		
 		arcade(jAxisRight, jAxisLeft);
 		
-		Robot.drivetrain.go(speedR, speedL);	
+		Robot.drivetrain.go(speedR, speedL);
 		//Robot.drivetrain.go(RobotUtil.deadzone(Robot.oi.driver.getRawAxis(5), deadzone), RobotUtil.deadzone(Robot.oi.driver.getRawAxis(1), deadzone));
 	}
 	

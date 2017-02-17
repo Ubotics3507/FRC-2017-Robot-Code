@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3507.robot;
 import org.usfirst.frc.team3507.robot.RobotUtil;
 
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
@@ -10,9 +11,9 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team3507.robot.commands.ExampleCommand;
+import org.usfirst.frc.team3507.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3507.robot.subsystems.ElevatorIntake;
 import org.usfirst.frc.team3507.robot.subsystems.ExampleSubsystem;
-import org.usfirst.frc.team3507.robot.subsystems.PracticeDriveTrain;
 import org.usfirst.frc.team3507.robot.subsystems.flywheel;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -34,7 +35,7 @@ public class Robot extends IterativeRobot {
 	Compressor mainCompressor = new Compressor(0);
 	public static final flywheel flywheel = new flywheel();
 	public static final ElevatorIntake elevator = new ElevatorIntake();
-	public static final PracticeDriveTrain drivetrain = new PracticeDriveTrain();
+	public static final Drivetrain drivetrain = new Drivetrain();
 	public static final org.usfirst.frc.team3507.robot.subsystems.Intake Intake = new org.usfirst.frc.team3507.robot.subsystems.Intake();
 	public static OI oi;
 	
