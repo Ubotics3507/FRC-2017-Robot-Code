@@ -2,7 +2,7 @@
 package org.usfirst.frc.team3507.robot;
 import org.usfirst.frc.team3507.robot.RobotUtil;
 
-
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,12 +10,15 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team3507.robot.commands.ExampleCommand;
+import org.usfirst.frc.team3507.robot.subsystems.ElevatorIntake;
 import org.usfirst.frc.team3507.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team3507.robot.subsystems.PracticeDriveTrain;
+import org.usfirst.frc.team3507.robot.subsystems.flywheel;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team3507.robot.commands.AutoDistance;
 import org.usfirst.frc.team3507.robot.commands.Autonomous;
 import org.usfirst.frc.team3507.robot.commands.DriveTrainTele;
 
@@ -28,6 +31,9 @@ import org.usfirst.frc.team3507.robot.commands.DriveTrainTele;
  */
 public class Robot extends IterativeRobot {
 
+	Compressor mainCompressor = new Compressor(0);
+	public static final flywheel flywheel = new flywheel();
+	public static final ElevatorIntake elevator = new ElevatorIntake();
 	public static final PracticeDriveTrain drivetrain = new PracticeDriveTrain();
 	public static final org.usfirst.frc.team3507.robot.subsystems.Intake Intake = new org.usfirst.frc.team3507.robot.subsystems.Intake();
 	public static OI oi;
@@ -37,7 +43,7 @@ public class Robot extends IterativeRobot {
 	
 	public Autonomous auton;
 	
-	static double deadzone = .01;
+	static double deadzone = .09;
 
     Command autonomousCommand;
    // SendableChooser<ExampleCommand> chooser;
@@ -49,12 +55,13 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI(0);
+		oi = new OI();
 		
 		//auto = new Autonomous(6,0.5,0.5)
 		
 		auto= new SendableChooser();
-		auto.addDefault("Auto Drive Only ", new Autonomous(4,0.5,0.5));
+		auto.addObject("Auto Drive Only ", new Autonomous(4,0.5,0.5));
+		auto.addDefault("PID Straight ", new AutoDistance(10));
 		SmartDashboard.putData("Auto mode", auto);
 		
 		
@@ -93,8 +100,8 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
     	
 //        autonomousCommand = (Command) chooser.getSelected();
-       // Command autoCommand = (Command) chooser.getSelected();
-    	//autoCommand.start();
+        Command autoCommand = (Command) auto.getSelected();
+    	autoCommand.start();
     	//auto.int();
     	Autonomous test = new Autonomous(5,0.5,0.5);
     	test.execute();
@@ -138,14 +145,25 @@ public class Robot extends IterativeRobot {
         //Scheduler.getInstance().run();
     	double jAxisRight;
 		double jAxisLeft;
+		double flywheelSpeed;
+		double elevatorSpeed;
+		boolean mainIntake;
+		boolean mainIntake2;
 		
 		jAxisRight = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(4), deadzone);
 		jAxisLeft = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(1), deadzone);
-		
+		flywheelSpeed = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(2), deadzone);
+		elevatorSpeed = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(3), deadzone);
+		mainIntake = Robot.oi.driver.getAButton();
+		mainIntake2 = Robot.oi.driver.getXButton();
+
 		arcade(jAxisRight, jAxisLeft);
 		
 		Robot.drivetrain.go(speedR, speedL);
-		Robot.Intake.go(RobotUtil.deadzone(Robot.oi.driver.getRawAxis(3), deadzone));
+		Robot.elevator.go(elevatorSpeed);
+		Robot.flywheel.go(flywheelSpeed);
+		Robot.Intake.go(mainIntake || mainIntake2);
+		
 		
 		SmartDashboard.putNumber("Left", Robot.drivetrain.leftMaster.get());
 		SmartDashboard.putNumber("Right", Robot.drivetrain.rightMaster.get());

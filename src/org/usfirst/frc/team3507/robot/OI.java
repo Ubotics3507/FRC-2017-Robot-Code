@@ -56,11 +56,12 @@ public class OI {
 	
 	public XboxController driver = new XboxController(RobotMap.driver);
 	
-	public OI(int controllerNumber) {
+	public OI() {
+		
 		
 		///sets all of the class variables to an integer
 		
-		controller = new Joystick(controllerNumber);
+		/* controller = new Joystick(controllerNumber);
 		A = new JoystickButton(controller, 1);
 		B = new JoystickButton(controller, 2);
 		X = new JoystickButton(controller, 3);
@@ -69,7 +70,9 @@ public class OI {
 		rightBump = new JoystickButton(controller, 6);
 		back = new JoystickButton(controller, 7);
 		start = new JoystickButton(controller, 8);
+		*/
 	}
+	
 	public void XboxController() {
 		Robot.oi.driver.getRawAxis(4);
 		Robot.oi.driver.getRawAxis(5);
