@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3507.robot.subsystems;
 
 import org.usfirst.frc.team3507.robot.RobotMap;
+
 import org.usfirst.frc.team3507.robot.commands.DriveTrainTele;
 
 import com.ctre.CANTalon;
@@ -8,22 +9,19 @@ import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.RobotDrive;
-//import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Drivetrain extends Subsystem {
 	
-	private double speedL;
-	private double speedR;
-	
+
 	private RobotDrive robotDrive;
 	
-	public com.ctre.CANTalon leftSlave = new com.ctre.CANTalon(RobotMap.leftSlave);
-    public com.ctre.CANTalon rightSlave = new com.ctre.CANTalon(RobotMap.rightSlave);
-    public com.ctre.CANTalon leftSlave2 = new com.ctre.CANTalon(RobotMap.leftSlave2);
-    public com.ctre.CANTalon rightSlave2 = new com.ctre.CANTalon(RobotMap.rightSlave2);
-    public com.ctre.CANTalon leftMaster = new com.ctre.CANTalon(RobotMap.leftMaster);
-    public com.ctre.CANTalon rightMaster = new com.ctre.CANTalon(RobotMap.rightMaster);
+	public CANTalon leftSlave = new CANTalon(RobotMap.leftSlave);
+    public CANTalon rightSlave = new CANTalon(RobotMap.rightSlave);
+    public CANTalon leftSlave2 = new CANTalon(RobotMap.leftSlave2);
+    public CANTalon rightSlave2 = new CANTalon(RobotMap.rightSlave2);
+    public CANTalon leftMaster = new CANTalon(RobotMap.leftMaster);
+    public CANTalon rightMaster = new CANTalon(RobotMap.rightMaster);
     
 	public Drivetrain() {
 		
