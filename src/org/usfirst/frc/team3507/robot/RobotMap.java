@@ -22,7 +22,7 @@ public class RobotMap {
 	public static int elevatorMotor = 8;
 	public static int shooterMotor = 7;
 	
-	public static int driveSolenoid = 0;
-	public static int hopperSolenoid = 1;
+	public static int driveSolenoid = 4;
+	public static int hopperSolenoid = 5;
 	
 }

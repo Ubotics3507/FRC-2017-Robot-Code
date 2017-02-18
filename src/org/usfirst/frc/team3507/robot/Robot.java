@@ -11,7 +11,6 @@ import org.usfirst.frc.team3507.robot.subsystems.IntakeRollers;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -28,7 +27,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 	
 	// Velocity - 2500 / 60 
-
+	
 	Compressor mainCompressor = new Compressor(0);
 	public static final Hopper hopper = new Hopper();
 	public static final Flywheel flywheel = new Flywheel();
@@ -134,6 +133,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("PositionL", Robot.drivetrain.leftMaster.getPosition());
 		SmartDashboard.putNumber("PositionR", Robot.drivetrain.rightMaster.getPosition());
 		SmartDashboard.putNumber("Flywheel Speed", Robot.flywheel.getSpeed());
+		SmartDashboard.putData("Compressor", mainCompressor);
     }
     
      
