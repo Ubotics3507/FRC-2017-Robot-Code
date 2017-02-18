@@ -1,13 +1,14 @@
 package org.usfirst.frc.team3507.robot.commands;
 
 import org.usfirst.frc.team3507.robot.Robot;
-import org.usfirst.frc.team3507.robot.subsystems.Preferences;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeElevator extends Command {
 
 	Preferences prefs = Preferences.getInstance(); 
+	
 	public IntakeElevator(double speed) {
 		requires(Robot.elevator);
 		

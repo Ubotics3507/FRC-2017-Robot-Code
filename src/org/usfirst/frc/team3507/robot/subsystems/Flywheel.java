@@ -26,7 +26,7 @@ public class Flywheel extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub    
 		
 	}
 	
@@ -34,7 +34,7 @@ public class Flywheel extends Subsystem {
 		flywheel.set(speed);
 	}
 	
-	public void stop() {
+	public void stop() {  
 		flywheel.set(0);
 	}
 	
