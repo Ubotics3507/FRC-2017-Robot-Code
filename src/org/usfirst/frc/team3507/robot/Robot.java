@@ -154,7 +154,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Left", Robot.drivetrain.leftMaster.getSpeed());
 		SmartDashboard.putNumber("Right", Robot.drivetrain.rightMaster.getSpeed());
 		SmartDashboard.putNumber("PositionL", Robot.drivetrain.leftMaster.getPosition());
-		SmartDashboard.putNumber("PositionL", Robot.drivetrain.leftMaster.getPosition());
+		SmartDashboard.putNumber("PositionR", Robot.drivetrain.rightMaster.getPosition());
 		SmartDashboard.putNumber("Flywheel Speed", Robot.flywheel.getSpeed());
     }
     
