@@ -1,27 +1,20 @@
 
 package org.usfirst.frc.team3507.robot;
-import org.usfirst.frc.team3507.robot.RobotUtil;
-
+import org.usfirst.frc.team3507.robot.commands.AutoDistance;
+import org.usfirst.frc.team3507.robot.commands.Autonomous;
+import org.usfirst.frc.team3507.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team3507.robot.subsystems.ElevatorIntake;
+import org.usfirst.frc.team3507.robot.subsystems.Flywheel;
+import org.usfirst.frc.team3507.robot.subsystems.IntakeArm;
+import org.usfirst.frc.team3507.robot.subsystems.IntakeRollers;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
-
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import org.usfirst.frc.team3507.robot.commands.ExampleCommand;
-import org.usfirst.frc.team3507.robot.subsystems.Drivetrain;
-import org.usfirst.frc.team3507.robot.subsystems.ElevatorIntake;
-import org.usfirst.frc.team3507.robot.subsystems.ExampleSubsystem;
-import org.usfirst.frc.team3507.robot.subsystems.Flywheel;
-
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team3507.robot.commands.AutoDistance;
-import org.usfirst.frc.team3507.robot.commands.Autonomous;
-import org.usfirst.frc.team3507.robot.commands.DriveTrainTele;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -38,15 +31,11 @@ public class Robot extends IterativeRobot {
 	public static final Flywheel flywheel = new Flywheel();
 	public static final ElevatorIntake elevator = new ElevatorIntake();
 	public static final Drivetrain drivetrain = new Drivetrain();
-	public static final org.usfirst.frc.team3507.robot.subsystems.Intake Intake = new org.usfirst.frc.team3507.robot.subsystems.Intake();
+	public static final IntakeRollers Intake = new IntakeRollers();
+	public static final IntakeArm Arm = new IntakeArm();
 	public static OI oi;
 	
-	public double speedL;
-	public double speedR;
-	
 	public Autonomous auton;
-	
-	static double deadzone = .09;
 
     Command autonomousCommand;
    // SendableChooser<ExampleCommand> chooser;
