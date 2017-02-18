@@ -144,27 +144,16 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        //Scheduler.getInstance().run();
-    	double jAxisRight;
-		double jAxisLeft;
-		double flywheelSpeed;
-		double elevatorSpeed;
-		boolean mainIntake;
-		boolean mainIntake2;
+        Scheduler.getInstance().run();
 		
-				
-		flywheelSpeed = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(2), deadzone);
-		elevatorSpeed = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(3), deadzone);
-		mainIntake = Robot.oi.driver.getAButton();
-		mainIntake2 = Robot.oi.driver.getXButton();
-		
-		Robot.elevator.go(elevatorSpeed);
+		/*Robot.elevator.go(elevatorSpeed);
 		Robot.flywheel.go(flywheelSpeed);
-		Robot.Intake.go(mainIntake || mainIntake2);
+		Robot.Intake.go(mainIntake || mainIntake2); */
 		
 		
 		SmartDashboard.putNumber("Left", Robot.drivetrain.leftMaster.get());
 		SmartDashboard.putNumber("Right", Robot.drivetrain.rightMaster.get());
+		SmartDashboard.putNumber("Flywheel Speed", Robot.flywheel.getSpeed());
     }
     
      
