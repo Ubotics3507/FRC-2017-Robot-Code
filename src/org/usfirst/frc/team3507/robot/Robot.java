@@ -5,11 +5,13 @@ import org.usfirst.frc.team3507.robot.commands.Autonomous;
 import org.usfirst.frc.team3507.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3507.robot.subsystems.ElevatorIntake;
 import org.usfirst.frc.team3507.robot.subsystems.Flywheel;
+import org.usfirst.frc.team3507.robot.subsystems.Hopper;
 import org.usfirst.frc.team3507.robot.subsystems.IntakeArm;
 import org.usfirst.frc.team3507.robot.subsystems.IntakeRollers;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -28,6 +30,7 @@ public class Robot extends IterativeRobot {
 	// Velocity - 2500 / 60 
 
 	Compressor mainCompressor = new Compressor(0);
+	public static final Hopper hopper = new Hopper();
 	public static final Flywheel flywheel = new Flywheel();
 	public static final ElevatorIntake elevator = new ElevatorIntake();
 	public static final Drivetrain drivetrain = new Drivetrain();
