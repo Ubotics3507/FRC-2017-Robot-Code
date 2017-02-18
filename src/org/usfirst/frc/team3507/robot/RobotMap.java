@@ -18,7 +18,9 @@ public class RobotMap {
 	public static int operator = 13;
 	
 	public static int intakeMotor = 9;
-	public static int elevatorMotor = 7;
-	public static int shooterMotor = 8;
+	public static int elevatorMotor = 8;
+	public static int shooterMotor = 7;
+	
+	public static int driveSolenoid = 0;
 	
 }

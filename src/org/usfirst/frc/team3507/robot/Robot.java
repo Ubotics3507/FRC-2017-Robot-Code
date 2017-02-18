@@ -151,8 +151,8 @@ public class Robot extends IterativeRobot {
 		Robot.Intake.go(mainIntake || mainIntake2); */
 		
 		
-		SmartDashboard.putNumber("Left", Robot.drivetrain.leftMaster.get());
-		SmartDashboard.putNumber("Right", Robot.drivetrain.rightMaster.get());
+		SmartDashboard.putNumber("Left", Robot.drivetrain.leftMaster.getSpeed());
+		SmartDashboard.putNumber("Right", Robot.drivetrain.rightMaster.getSpeed());
 		SmartDashboard.putNumber("Flywheel Speed", Robot.flywheel.getSpeed());
     }
     

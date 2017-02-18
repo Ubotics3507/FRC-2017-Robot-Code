@@ -52,14 +52,17 @@ public class DriveTrainTele extends Command {
     		jAxisRight = RobotUtil.deadzone(Robot.oi.driver.getX(Hand.kRight), deadzone);
         	jAxisLeft = RobotUtil.deadzone(Robot.oi.driver.getY(Hand.kLeft), deadzone);
         	Robot.drivetrain.arcadeDrive(jAxisLeft, jAxisRight);
+        	break;
     	case TANK:
     		jAxisRight = RobotUtil.deadzone(Robot.oi.driver.getY(Hand.kRight), deadzone);
         	jAxisLeft = RobotUtil.deadzone(Robot.oi.driver.getY(Hand.kLeft), deadzone);
         	Robot.drivetrain.tankDrive(jAxisRight, jAxisLeft);
+        	break;
     	case ARCADE:
     		jAxisRight = RobotUtil.deadzone(Robot.oi.driver.getX(Hand.kLeft), deadzone);
     		jAxisLeft = RobotUtil.deadzone(Robot.oi.driver.getY(Hand.kLeft), deadzone);
     		Robot.drivetrain.arcadeDrive(jAxisLeft, jAxisRight);
+    		break;
     	case PARALYZE:
     		Robot.drivetrain.stop();
     		break;

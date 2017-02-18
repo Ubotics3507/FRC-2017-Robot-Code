@@ -9,12 +9,16 @@ import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Drivetrain extends Subsystem {
 	
+	private Solenoid driveSolenoid = new Solenoid(RobotMap.driveSolenoid);
 
 	private RobotDrive robotDrive;
+	
+	private boolean highGear = false;
 	
 	public CANTalon leftSlave = new CANTalon(RobotMap.leftSlave);
     public CANTalon rightSlave = new CANTalon(RobotMap.rightSlave);
@@ -26,17 +30,16 @@ public class Drivetrain extends Subsystem {
 	public Drivetrain() {
 		
 		configureTalon(leftMaster, TalonControlMode.PercentVbus, 0);
-		configureTalon(leftSlave, TalonControlMode.Follower, RobotMap.leftSlave);
-		configureTalon(leftSlave2, TalonControlMode.Follower, RobotMap.leftSlave2);
+		configureTalon(leftSlave, TalonControlMode.Follower, RobotMap.leftMaster);
+		configureTalon(leftSlave2, TalonControlMode.Follower, RobotMap.leftMaster);
 		configureTalon(rightMaster, TalonControlMode.PercentVbus, 0);
-		configureTalon(rightSlave, TalonControlMode.Follower, RobotMap.rightSlave);
-		configureTalon(rightSlave2, TalonControlMode.Follower, RobotMap.rightSlave2);
+		configureTalon(rightSlave, TalonControlMode.Follower, RobotMap.rightMaster);
+		configureTalon(rightSlave2, TalonControlMode.Follower, RobotMap.rightMaster);
 
     	leftSlave.reverseOutput(true);
     	leftSlave2.reverseOutput(true);
     	rightSlave.reverseOutput(true);
     	rightSlave2.reverseOutput(true);
-    	rightMaster.setInverted(true);
     	
     	leftMaster.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	rightMaster.setFeedbackDevice(FeedbackDevice.QuadEncoder);
@@ -67,6 +70,16 @@ public class Drivetrain extends Subsystem {
 		talon.set(initialValue);
 		talon.enableBrakeMode(false);
 		
+	}
+	
+	public void toggleHighGear() {
+		highGear = !highGear;
+		driveSolenoid.set(highGear);
+	}
+	
+	public void setHighGear(boolean highGear) {
+		this.highGear = highGear;
+		driveSolenoid.set(highGear);
 	}
 	
 }
