@@ -39,45 +39,11 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 	
-	
-	public Joystick controller;
-	public Button A;
-	public Button B;
-	public Button X;
-	public Button Y;
-	public Button leftBump;
-	public Button rightBump;
-	public static Joystick leftStick = new Joystick(1);
-	public static Joystick rightStick = new Joystick(4);
-	public Button back;
-	public Button start;
-	public Button leftTrigger;
-	public Button rightTrigger;
-	
 	public XboxController driver = new XboxController(RobotMap.driver);
 	
 	public OI() {
 		
-		
-		///sets all of the class variables to an integer
-		
-		/* controller = new Joystick(controllerNumber);
-		A = new JoystickButton(controller, 1);
-		B = new JoystickButton(controller, 2);
-		X = new JoystickButton(controller, 3);
-		Y = new JoystickButton(controller, 4);
-		leftBump = new JoystickButton(controller, 5);
-		rightBump = new JoystickButton(controller, 6);
-		back = new JoystickButton(controller, 7);
-		start = new JoystickButton(controller, 8);
-		*/
 	}
 	
-	public void XboxController() {
-		Robot.oi.driver.getRawAxis(4);
-		Robot.oi.driver.getRawAxis(5);
-		Robot.oi.driver.getRawAxis(1);
-		Robot.oi.driver.getRawAxis(2);
-	}
 }
 

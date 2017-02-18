@@ -3,15 +3,18 @@ package org.usfirst.frc.team3507.robot.subsystems;
 import org.usfirst.frc.team3507.robot.RobotMap;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class flywheel extends Subsystem {
+public class Flywheel extends Subsystem {
 
 	public static CANTalon flywheel = new CANTalon(RobotMap.shooterMotor);
 	
-	public flywheel() {
+	public Flywheel() {
 		flywheel.enableBrakeMode(true);
+		flywheel.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 	}
 	
 	@Override
@@ -21,15 +24,15 @@ public class flywheel extends Subsystem {
 	}
 	
 	public void go(double speed) {
-		if (speed > 0) {
-			flywheel.set(0.7);
-		}
-		else stop();
-		
+		flywheel.set(speed);
 	}
 	
 	public void stop() {
 		flywheel.set(0);
+	}
+	
+	public double getSpeed() {
+		return flywheel.getSpeed();
 	}
 
 }

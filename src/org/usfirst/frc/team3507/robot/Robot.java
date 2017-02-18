@@ -14,7 +14,7 @@ import org.usfirst.frc.team3507.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3507.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3507.robot.subsystems.ElevatorIntake;
 import org.usfirst.frc.team3507.robot.subsystems.ExampleSubsystem;
-import org.usfirst.frc.team3507.robot.subsystems.flywheel;
+import org.usfirst.frc.team3507.robot.subsystems.Flywheel;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -33,7 +33,7 @@ import org.usfirst.frc.team3507.robot.commands.DriveTrainTele;
 public class Robot extends IterativeRobot {
 
 	Compressor mainCompressor = new Compressor(0);
-	public static final flywheel flywheel = new flywheel();
+	public static final Flywheel flywheel = new Flywheel();
 	public static final ElevatorIntake elevator = new ElevatorIntake();
 	public static final Drivetrain drivetrain = new Drivetrain();
 	public static final org.usfirst.frc.team3507.robot.subsystems.Intake Intake = new org.usfirst.frc.team3507.robot.subsystems.Intake();
