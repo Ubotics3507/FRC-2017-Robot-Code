@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrainTele extends Command {
 	
-	static double deadzone = 0.1;
+	static double deadzone = 0.05;
 	
 	double jAxisRight;
 	double jAxisLeft;
