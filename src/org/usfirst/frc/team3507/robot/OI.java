@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3507.robot;
 
 import org.usfirst.frc.team3507.robot.commands.FlywheelRun;
+import org.usfirst.frc.team3507.robot.commands.ElevatorRun;
 import org.usfirst.frc.team3507.robot.util.XboxControllerButtons;
 
 /**
@@ -39,6 +40,7 @@ public class OI {
 	
 	public OI() {
 		driver.a.whileHeld(new FlywheelRun());
+		driver.b.whileHeld(new ElevatorRun());
 	}
 	
 }

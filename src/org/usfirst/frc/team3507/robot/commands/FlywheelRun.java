@@ -31,6 +31,7 @@ public class FlywheelRun extends Command {
 	protected void end() {
 		Robot.flywheel.stop();
 	}
+	
 	protected void interrupted() {
 		end();
 	}
