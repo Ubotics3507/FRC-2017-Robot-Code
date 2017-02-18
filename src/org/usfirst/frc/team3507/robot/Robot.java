@@ -31,6 +31,8 @@ import org.usfirst.frc.team3507.robot.commands.DriveTrainTele;
  * directory.
  */
 public class Robot extends IterativeRobot {
+	
+	// Velocity - 2500 / 60 
 
 	Compressor mainCompressor = new Compressor(0);
 	public static final Flywheel flywheel = new Flywheel();
@@ -150,7 +152,10 @@ public class Robot extends IterativeRobot {
 		Robot.flywheel.go(flywheelSpeed);
 		Robot.Intake.go(mainIntake || mainIntake2); */
 		
-		
+        if (oi.driver.getBButton() == true) {
+        	Robot.elevator.go(-.7);
+        }
+        
 		SmartDashboard.putNumber("Left", Robot.drivetrain.leftMaster.getSpeed());
 		SmartDashboard.putNumber("Right", Robot.drivetrain.rightMaster.getSpeed());
 		SmartDashboard.putNumber("PositionL", Robot.drivetrain.leftMaster.getPosition());

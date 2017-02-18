@@ -1,20 +1,27 @@
 package org.usfirst.frc.team3507.robot.subsystems;
 
+import org.usfirst.frc.team3507.robot.Robot;
 import org.usfirst.frc.team3507.robot.RobotMap;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Flywheel extends Subsystem {
 
-	public static CANTalon flywheel = new CANTalon(RobotMap.shooterMotor);
+	public CANTalon flywheel = new CANTalon(RobotMap.shooterMotor);
+	
 	
 	public Flywheel() {
 		flywheel.enableBrakeMode(true);
 		flywheel.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		flywheel.reverseSensor(true);
+		flywheel.changeControlMode(TalonControlMode.Speed);
+		flywheel.set(0);
 	}
 	
 	@Override
@@ -34,5 +41,4 @@ public class Flywheel extends Subsystem {
 	public double getSpeed() {
 		return flywheel.getSpeed();
 	}
-
 }
