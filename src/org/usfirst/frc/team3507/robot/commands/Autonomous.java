@@ -35,7 +35,7 @@ public class Autonomous extends Command{
 	}
 	
 	public void execute() {
-		Robot.drivetrain.go(rightSpeed, leftSpeed);
+		Robot.drivetrain.arcadeDrive(rightSpeed, leftSpeed);
 	}
 	
 	public boolean isFinished() {

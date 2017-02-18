@@ -31,21 +31,10 @@ public class Drivetrain extends Subsystem {
 		configureTalon(rightMaster, TalonControlMode.PercentVbus, 0);
 		configureTalon(rightSlave, TalonControlMode.Follower, RobotMap.rightSlave);
 		configureTalon(rightSlave2, TalonControlMode.Follower, RobotMap.rightSlave2);
-		
-    	rightSlave.enableBrakeMode(true);
-    	leftSlave.enableBrakeMode(true);
-    	rightSlave2.enableBrakeMode(true);
-    	leftSlave2.enableBrakeMode(true);
-    	rightMaster.enableBrakeMode(true);
-    	leftMaster.enableBrakeMode(true);
 
-    	leftSlave.set(RobotMap.leftMaster);
     	leftSlave.reverseOutput(true);
-    	leftSlave2.set(RobotMap.leftMaster);
     	leftSlave2.reverseOutput(true);
-    	rightSlave.set(RobotMap.rightMaster);
     	rightSlave.reverseOutput(true);
-    	rightSlave2.set(RobotMap.rightMaster);
     	rightSlave2.reverseOutput(true);
     	rightMaster.setInverted(true);
     	
@@ -58,11 +47,6 @@ public class Drivetrain extends Subsystem {
 	
 	public void initDefaultCommand() {
 		setDefaultCommand(new DriveTrainTele());
-	}
-	
-	public void go(double right, double left) {
-		leftMaster.set(left);
-		rightMaster.set(right);
 	}
 	
 	public void stop() {

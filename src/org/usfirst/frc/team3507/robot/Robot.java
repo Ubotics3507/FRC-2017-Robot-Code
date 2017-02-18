@@ -50,6 +50,7 @@ public class Robot extends IterativeRobot {
    // SendableChooser<ExampleCommand> chooser;
    public static SendableChooser tele;
     SendableChooser auto;
+    
 
     /**
      * This function is run when the robot is first started up and should be
@@ -64,6 +65,10 @@ public class Robot extends IterativeRobot {
 		auto.addObject("Auto Drive Only ", new Autonomous(4,0.5,0.5));
 		auto.addDefault("PID Straight ", new AutoDistance(10));
 		SmartDashboard.putData("Auto mode", auto);
+		
+		tele = new SendableChooser();
+		tele.addDefault("Arcade Mode", 0);
+		tele.addObject("Tank Mode", 1);
 		
 		
 //		
@@ -151,16 +156,21 @@ public class Robot extends IterativeRobot {
 		boolean mainIntake;
 		boolean mainIntake2;
 		
-		jAxisRight = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(4), deadzone);
-		jAxisLeft = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(1), deadzone);
+		if (Robot.tele.getSelected().equals(0)) {
+        	jAxisRight = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(4), deadzone);
+        	jAxisLeft = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(1), deadzone);
+        	Robot.drivetrain.arcadeDrive(jAxisRight, jAxisLeft);
+        	
+		} else if (Robot.tele.getSelected().equals(1)) {
+			jAxisRight = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(4), deadzone);
+        	jAxisLeft = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(1), deadzone);
+        	Robot.drivetrain.tankDrive(jAxisRight, jAxisLeft);
+		}
 		flywheelSpeed = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(2), deadzone);
 		elevatorSpeed = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(3), deadzone);
 		mainIntake = Robot.oi.driver.getAButton();
 		mainIntake2 = Robot.oi.driver.getXButton();
-
-		arcade(jAxisRight, jAxisLeft);
 		
-		Robot.drivetrain.go(speedR, speedL);
 		Robot.elevator.go(elevatorSpeed);
 		Robot.flywheel.go(flywheelSpeed);
 		Robot.Intake.go(mainIntake || mainIntake2);
@@ -170,34 +180,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Right", Robot.drivetrain.rightMaster.get());
     }
     
-     public void arcade(double jR, double jL) {
-    	double max;
-    	double sum;
-    	double dif;
-    	
-    	max = Math.abs(jR);
-    	if (Math.abs(jL) > max) max = Math.abs(jL);
-    	sum = jR + jL;
-    	dif = jR - jL;
-    	
-    	if (jL <= 0) {
-    		if (jR >= 0) {
-    			speedL = max;
-    			speedR = -sum;
-    		} else {
-    			speedL = dif;
-    			speedR = max;
-    		}
-    	} else {
-    		if (jR >= 0) {
-    			speedL = dif;
-    			speedR = -max;
-    		} else {
-    			speedL = -max;
-    			speedR = -sum;
-    		}
-    	}
-    }
+     
     
     /**
      * This function is called periodically during test mode

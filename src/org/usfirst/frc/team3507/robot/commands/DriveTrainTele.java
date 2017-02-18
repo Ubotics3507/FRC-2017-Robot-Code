@@ -29,9 +29,7 @@ public class DriveTrainTele extends Command {
 		jAxisRight = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(4), deadzone);
 		jAxisLeft = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(1), deadzone);
 		
-		arcade(jAxisRight, jAxisLeft);
-		
-		Robot.drivetrain.go(speedR, speedL);
+		Robot.drivetrain.arcadeDrive(jAxisRight, jAxisLeft);
 		//Robot.drivetrain.go(RobotUtil.deadzone(Robot.oi.driver.getRawAxis(5), deadzone), RobotUtil.deadzone(Robot.oi.driver.getRawAxis(1), deadzone));
 	}
 	
