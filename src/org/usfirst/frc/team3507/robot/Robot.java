@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team3507.robot;
 import org.usfirst.frc.team3507.robot.commands.AutoDistance;
-import org.usfirst.frc.team3507.robot.commands.Autonomous;
+import org.usfirst.frc.team3507.robot.commands.AutoDriveTime;
 import org.usfirst.frc.team3507.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3507.robot.subsystems.ElevatorIntake;
 import org.usfirst.frc.team3507.robot.subsystems.Flywheel;
@@ -37,7 +37,7 @@ public class Robot extends IterativeRobot {
 	public static final IntakeArm Arm = new IntakeArm();
 	public static OI oi;
 	
-	public Autonomous auton;
+	public AutoDriveTime auton;
 
     Command autonomousCommand;
     
@@ -52,7 +52,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		auto= new SendableChooser();
-		auto.addObject("Auto Drive Only ", new Autonomous(4,0.5,0.5));
+		auto.addObject("Auto Drive Only ", new AutoDriveTime(4,0.5,0.5));
 		auto.addDefault("PID Straight ", new AutoDistance(10));
 		SmartDashboard.putData("Auto mode", auto);
         
@@ -87,7 +87,7 @@ public class Robot extends IterativeRobot {
         Command autoCommand = (Command) auto.getSelected();
     	autoCommand.start();
     	//auto.int();
-    	Autonomous test = new Autonomous(5,0.5,0.5);
+    	AutoDriveTime test = new AutoDriveTime(5,0.5,0.5);
     	test.execute();
     	
  

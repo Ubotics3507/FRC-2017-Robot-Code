@@ -20,6 +20,7 @@ public class Drivetrain extends Subsystem {
 	
 	private boolean highGear = false;
 	
+	//Sets all drivetrain Talons to named IDs
 	public CANTalon leftSlave = new CANTalon(RobotMap.leftSlave);
     public CANTalon rightSlave = new CANTalon(RobotMap.rightSlave);
     public CANTalon leftSlave2 = new CANTalon(RobotMap.leftSlave2);
