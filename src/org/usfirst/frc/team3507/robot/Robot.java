@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
 	public Autonomous auton;
 
     Command autonomousCommand;
-   // SendableChooser<ExampleCommand> chooser;
+    
    public static SendableChooser auto;
     
 
@@ -49,21 +49,10 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
 		
-		//auto = new Autonomous(6,0.5,0.5)
-		
 		auto= new SendableChooser();
 		auto.addObject("Auto Drive Only ", new Autonomous(4,0.5,0.5));
 		auto.addDefault("PID Straight ", new AutoDistance(10));
 		SmartDashboard.putData("Auto mode", auto);
-		
-		
-		
-//		
-//		tele = new SendableChooser();
-//        //chooser.addDefault("Default tELE", new ExampleCommand());
-//        tele.addDefault("Tele Option", object);
-////        chooser.addObject("My Auto", new MyAutoCommand());
-//        SmartDashboard.putData("Tele", tele);
         
         SmartDashboard.putData(Scheduler.getInstance());
     }
@@ -136,14 +125,6 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-		
-		/*Robot.elevator.go(elevatorSpeed);
-		Robot.flywheel.go(flywheelSpeed);
-		Robot.Intake.go(mainIntake || mainIntake2); */
-		
-        if (oi.driver.getBButton() == true) {
-        	Robot.elevator.go(-.7);
-        }
         
 		SmartDashboard.putNumber("Left", Robot.drivetrain.leftMaster.getSpeed());
 		SmartDashboard.putNumber("Right", Robot.drivetrain.rightMaster.getSpeed());

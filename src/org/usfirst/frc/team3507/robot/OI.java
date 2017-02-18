@@ -4,6 +4,7 @@ import org.usfirst.frc.team3507.robot.commands.ElevatorRun;
 import org.usfirst.frc.team3507.robot.commands.FlywheelRun;
 import org.usfirst.frc.team3507.robot.commands.IntakeArmRun;
 import org.usfirst.frc.team3507.robot.commands.IntakeRollerRun;
+import org.usfirst.frc.team3507.robot.commands.ToggleHighGear;
 import org.usfirst.frc.team3507.robot.util.XboxControllerButtons;
 
 /**
@@ -46,6 +47,7 @@ public class OI {
 		driver.leftBumper.whileHeld(new IntakeArmRun(true));
 		driver.rightBumper.whileHeld(new IntakeArmRun(false));
 		driver.y.whileHeld(new IntakeRollerRun());
+		driver.start.whenPressed(new ToggleHighGear());
 	}
 	
 }

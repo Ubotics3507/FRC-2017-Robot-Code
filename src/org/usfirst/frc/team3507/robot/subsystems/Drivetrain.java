@@ -58,11 +58,11 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public void arcadeDrive(double move, double rotate) {
-		robotDrive.arcadeDrive(move, rotate);
+		robotDrive.arcadeDrive(move, rotate, true);
 	}
 	
 	public void tankDrive(double left, double right) {
-		robotDrive.tankDrive(left, right);
+		robotDrive.tankDrive(left, right, true);
 	}
 	
 	private void configureTalon(CANTalon talon, TalonControlMode mode, double initialValue) {
