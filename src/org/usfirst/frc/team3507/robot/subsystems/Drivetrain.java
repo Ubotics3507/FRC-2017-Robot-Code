@@ -1,20 +1,19 @@
 package org.usfirst.frc.team3507.robot.subsystems;
 
 import org.usfirst.frc.team3507.robot.RobotMap;
-
 import org.usfirst.frc.team3507.robot.commands.DriveTrainTele;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Drivetrain extends Subsystem {
 	
-	private Solenoid driveSolenoid = new Solenoid(RobotMap.driveSolenoid);
+	private DoubleSolenoid driveSolenoid = new DoubleSolenoid(RobotMap.driveSolenoidA, RobotMap.driveSolenoidB);
 
 	private RobotDrive robotDrive;
 	
@@ -75,12 +74,22 @@ public class Drivetrain extends Subsystem {
 	
 	public void toggleHighGear() {
 		highGear = !highGear;
-		driveSolenoid.set(highGear);
+		if (highGear = !highGear) {
+			driveSolenoid.set(DoubleSolenoid.Value.kReverse);
+		} else {
+			driveSolenoid.set(DoubleSolenoid.Value.kForward);
+		}
 	}
 	
 	public void setHighGear(boolean highGear) {
 		this.highGear = highGear;
-		driveSolenoid.set(highGear);
+		if (this.highGear == !highGear) {
+			driveSolenoid.set(DoubleSolenoid.Value.kForward);
+		} else {
+			driveSolenoid.set(DoubleSolenoid.Value.kReverse);
+			
+			
+		}
 	}
 	
 }

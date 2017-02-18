@@ -2,14 +2,14 @@ package org.usfirst.frc.team3507.robot.subsystems;
 
 import org.usfirst.frc.team3507.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Hopper extends Subsystem {
 
 	private boolean up = true;
 	
-	private Solenoid hopperSolenoid = new Solenoid(RobotMap.hopperSolenoid);
+	private DoubleSolenoid hopperSolenoid = new DoubleSolenoid(RobotMap.hopperSolenoidA, RobotMap.hopperSolenoidB);
 	
 	@Override
 	protected void initDefaultCommand() {
@@ -19,11 +19,20 @@ public class Hopper extends Subsystem {
 
 	public void toggleHopper() {
 		up = !up;
-		hopperSolenoid.set(up);
+		if (up = !up) {
+			hopperSolenoid.set(DoubleSolenoid.Value.kReverse);
+		} else {
+			hopperSolenoid.set(DoubleSolenoid.Value.kForward);
+		}
+		
 	}
 	
 	public void setHopper(boolean up) {
 		this.up = up;
-		hopperSolenoid.set(up);
+		if (up = !up) {
+			hopperSolenoid.set(DoubleSolenoid.Value.kForward);
+		} else {
+			hopperSolenoid.set(DoubleSolenoid.Value.kReverse);
+		}
 	}
 }
