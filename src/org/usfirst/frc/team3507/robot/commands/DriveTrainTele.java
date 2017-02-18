@@ -2,78 +2,69 @@ package org.usfirst.frc.team3507.robot.commands;
 
 import org.usfirst.frc.team3507.robot.RobotUtil;
 
+
 import org.usfirst.frc.team3507.robot.OI;
 import org.usfirst.frc.team3507.robot.Robot;
 import org.usfirst.frc.team3507.robot.subsystems.Drivetrain;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrainTele extends Command {
 	
-	private double speedL;
-	private double speedR;
-	
 	static double deadzone = 0.1;
+	
+	double jAxisRight;
+	double jAxisLeft;
+	
+	public static SendableChooser<DriveControlType> tele;
+	
 	public DriveTrainTele() {
     	super("DriveTrainTele");
         requires(Robot.drivetrain);
+        
+        tele = new SendableChooser<>();
+    	tele.addDefault("Arcade Mode", DriveControlType.ARCADE);
+    	tele.addObject("Tank Mode", DriveControlType.TANK);
+    	tele.addObject("Arcade Split", DriveControlType.ARCADE_SPLIT);
+    	tele.addObject("Paralyze", DriveControlType.PARALYZE);
+    	SmartDashboard.putData("Drivetrain", tele);
+
     }
+	
+	private enum DriveControlType {
+		ARCADE,
+		TANK,
+		ARCADE_SPLIT,
+		PARALYZE
+	}
+	
 	protected void initialize() {
 		
 	}
 	
 	protected void execute() {
-		double jAxisRight;
-		double jAxisLeft;
-		
-		jAxisRight = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(4), deadzone);
-		jAxisLeft = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(1), deadzone);
-		
-		Robot.drivetrain.arcadeDrive(jAxisRight, jAxisLeft);
-		//Robot.drivetrain.go(RobotUtil.deadzone(Robot.oi.driver.getRawAxis(5), deadzone), RobotUtil.deadzone(Robot.oi.driver.getRawAxis(1), deadzone));
-	}
-	
-	//public void execute() {
-		/*speedR = Robot.drivetrain.go(, left); //same as below
-		speedL = XboxController2017.leftStick.getRawAxis(); //need to define axis in parameters
-		if(speedL > deadzone || speedR > deadzone) {
-			PracticeDriveTrain.go(speedL, speedR);
-		}
-		else {
-			PracticeDriveTrain.stop();
-		} 
-	} */
-	
-	public void arcade(double jR, double jL) {					//Check this and below
-    	double max;
-    	double sum;
-    	double dif;
-    	
-    	max = Math.abs(jR);
-    	if (Math.abs(jL) > max) max = Math.abs(jL);
-    	sum = jR + jL;
-    	dif = jR - jL;
-    	
-    	if (jL <= 0) {
-    		if (jR >= 0) {
-    			speedL = max;
-    			speedR = -sum;
-    		} else {
-    			speedL = dif;
-    			speedR = max;
-    		}
-    	} else {
-    		if (jR >= 0) {
-    			speedL = dif;
-    			speedR = -max;
-    		} else {
-    			speedL = -max;
-    			speedR = -sum;
-    		}
+    	DriveControlType controlType = tele.getSelected();
+    	switch(controlType) {
+    	case ARCADE_SPLIT:
+    		jAxisRight = RobotUtil.deadzone(Robot.oi.driver.getX(Hand.kRight), deadzone);
+        	jAxisLeft = RobotUtil.deadzone(Robot.oi.driver.getY(Hand.kLeft), deadzone);
+        	Robot.drivetrain.arcadeDrive(jAxisLeft, jAxisRight);
+    	case TANK:
+    		jAxisRight = RobotUtil.deadzone(Robot.oi.driver.getY(Hand.kRight), deadzone);
+        	jAxisLeft = RobotUtil.deadzone(Robot.oi.driver.getY(Hand.kLeft), deadzone);
+        	Robot.drivetrain.tankDrive(jAxisRight, jAxisLeft);
+    	case ARCADE:
+    		jAxisRight = RobotUtil.deadzone(Robot.oi.driver.getX(Hand.kLeft), deadzone);
+    		jAxisLeft = RobotUtil.deadzone(Robot.oi.driver.getY(Hand.kLeft), deadzone);
+    		Robot.drivetrain.arcadeDrive(jAxisLeft, jAxisRight);
+    	case PARALYZE:
+    		Robot.drivetrain.stop();
+    		break;
     	}
-    }																// Check this and above
-	
-	
+	}
 	protected boolean isFinished() {
 		return false;
 	}

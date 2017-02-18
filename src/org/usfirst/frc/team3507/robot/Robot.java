@@ -48,8 +48,7 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
    // SendableChooser<ExampleCommand> chooser;
-   public static SendableChooser tele;
-    SendableChooser auto;
+   public static SendableChooser auto;
     
 
     /**
@@ -66,9 +65,6 @@ public class Robot extends IterativeRobot {
 		auto.addDefault("PID Straight ", new AutoDistance(10));
 		SmartDashboard.putData("Auto mode", auto);
 		
-		tele = new SendableChooser();
-		tele.addDefault("Arcade Mode", 0);
-		tele.addObject("Tank Mode", 1);
 		
 		
 //		
@@ -156,16 +152,7 @@ public class Robot extends IterativeRobot {
 		boolean mainIntake;
 		boolean mainIntake2;
 		
-		if (Robot.tele.getSelected().equals(0)) {
-        	jAxisRight = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(4), deadzone);
-        	jAxisLeft = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(1), deadzone);
-        	Robot.drivetrain.arcadeDrive(jAxisRight, jAxisLeft);
-        	
-		} else if (Robot.tele.getSelected().equals(1)) {
-			jAxisRight = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(4), deadzone);
-        	jAxisLeft = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(1), deadzone);
-        	Robot.drivetrain.tankDrive(jAxisRight, jAxisLeft);
-		}
+				
 		flywheelSpeed = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(2), deadzone);
 		elevatorSpeed = RobotUtil.deadzone(Robot.oi.driver.getRawAxis(3), deadzone);
 		mainIntake = Robot.oi.driver.getAButton();
