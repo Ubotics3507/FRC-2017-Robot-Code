@@ -8,9 +8,19 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 public class FlywheelAdjust extends InstantCommand {
 	
 	Preferences prefs = Preferences.getInstance();
+	
+	boolean backwards;
+	
+	public FlywheelAdjust(boolean backwards) {
+		this.backwards = backwards;
+	}
 
 	protected void execute() {
-		Robot.flywheel.changeSpeed(prefs.getDouble("Flywheel Adjust", 100));
+		if (!backwards) {
+			Robot.flywheel.changeSpeed(prefs.getDouble("Flywheel Adjust", 100));
+		} else {
+			Robot.flywheel.changeSpeed(prefs.getDouble("Flywheel Adjust", -100));
+		}
 	}
 	
 }

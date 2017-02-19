@@ -9,7 +9,7 @@ public class AutoShootCommand extends CommandGroup {
 
     public AutoShootCommand() {
     	
-    	addSequential(new AutoDriveTime(5, 0.5, 0.5));
+    	addSequential(new AutoDriveTime(2, 0.5, 0.5));
     	addSequential(new Delay(5));
     	addSequential(new AutoFlywheel(false));
     	addSequential(new Delay(1));
