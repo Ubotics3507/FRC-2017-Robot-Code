@@ -6,15 +6,13 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ClimberRun extends Command {
-
-	Preferences prefs = Preferences.getInstance();
 	
 	public ClimberRun() {
 		requires(Robot.climber);
 		
 	}
 	protected void execute() {
-		Robot.climber.go(prefs.getDouble("Climber Speed", .5));
+		Robot.climber.go(Robot.prefs.getDouble("Climber Speed", .5));
 	}
 	@Override
 	protected boolean isFinished() {

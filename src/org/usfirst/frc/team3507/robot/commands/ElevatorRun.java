@@ -5,16 +5,14 @@ import org.usfirst.frc.team3507.robot.Robot;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ElevatorRun extends Command {
-
-	Preferences prefs = Preferences.getInstance(); 
+public class ElevatorRun extends Command { 
 	
 	public ElevatorRun() {
 		requires(Robot.elevator);
 		
 	}
 	protected void execute() {
-		Robot.elevator.go(prefs.getDouble("Elevator Speed", .5));
+		Robot.elevator.go(Robot.prefs.getDouble("Elevator Speed", .5));
 	}
 	@Override
 	protected boolean isFinished() {

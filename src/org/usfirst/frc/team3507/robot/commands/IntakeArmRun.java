@@ -6,8 +6,6 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeArmRun extends Command{
-
-	Preferences prefs = Preferences.getInstance();
 	
 	public boolean reverse;
 	
@@ -18,9 +16,9 @@ public class IntakeArmRun extends Command{
 	
 	protected void execute() {
 		if (reverse == false) {
-			Robot.arm.go(prefs.getDouble("Intake Speed", .5));
+			Robot.arm.go(Robot.prefs.getDouble("Intake Speed", .5));
 		} else {
-			Robot.arm.go(-prefs.getDouble("Intake Speed", .5));
+			Robot.arm.go(-Robot.prefs.getDouble("Intake Speed", .5));
 		}
 	}
 	

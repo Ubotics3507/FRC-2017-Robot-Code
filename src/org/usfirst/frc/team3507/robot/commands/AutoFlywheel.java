@@ -6,8 +6,6 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
 public class AutoFlywheel extends InstantCommand {
-
-	Preferences prefs = Preferences.getInstance();
 	
 	private boolean stop;
 	

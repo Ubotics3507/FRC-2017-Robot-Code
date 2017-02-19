@@ -20,8 +20,6 @@ public class Drivetrain extends Subsystem {
 	
 	private boolean highGear = false;
 	
-	Preferences prefs = Preferences.getInstance();
-	
 	//Sets all drivetrain Talons to named IDs
 	public CANTalon leftSlave = new CANTalon(RobotMap.leftSlave);
     public CANTalon rightSlave = new CANTalon(RobotMap.rightSlave);
@@ -61,11 +59,11 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public void arcadeDrive(double move, double rotate) {
-		robotDrive.arcadeDrive(move, rotate + prefs.getDouble("Right Speed Rotation", 0), true);
+		robotDrive.arcadeDrive(move, rotate, true);
 	}
 	
 	public void tankDrive(double left, double right) {
-		robotDrive.tankDrive(left, right * prefs.getDouble("Right Speed Decrease", 1), true);
+		robotDrive.tankDrive(left, right, true);
 	}
 	
 	private void configureTalon(CANTalon talon, TalonControlMode mode, double initialValue) {

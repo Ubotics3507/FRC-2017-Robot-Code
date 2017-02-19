@@ -7,8 +7,6 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 
 public class AutoElevator extends InstantCommand {
 	
-	Preferences prefs = Preferences.getInstance();
-	
 	private boolean stop;
 	
 	public AutoElevator(boolean stop) {
@@ -19,7 +17,7 @@ public class AutoElevator extends InstantCommand {
 		if (stop) {
 			Robot.elevator.stop();
 		} else {
-			Robot.elevator.go(prefs.getDouble("Auto Elevator Speed", 0.7));
+			Robot.elevator.go(Robot.prefs.getDouble("Auto Elevator Speed", 0.7));
 		}
 		
 	}

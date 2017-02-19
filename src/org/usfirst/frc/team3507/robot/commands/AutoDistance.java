@@ -16,10 +16,9 @@ public class AutoDistance extends Command {
 	
 	public AutoDistance(double distance) {
 		requires(Robot.drivetrain);
-		Preferences prefs = Preferences.getInstance();
 		
 		this.distance = distance;
-		this.tolerance = prefs.getDouble("tolerance", 10);
+		this.tolerance = Robot.prefs.getDouble("tolerance", 10);
 	}
 	
 	protected void initialize() {
@@ -29,14 +28,13 @@ public class AutoDistance extends Command {
 	}
 	
 	protected void execute() {
-		Preferences prefs = Preferences.getInstance();
 		Robot.drivetrain.leftMaster.changeControlMode(TalonControlMode.Position);
 		Robot.drivetrain.rightMaster.changeControlMode(TalonControlMode.Position);
 //		Robot.drivetrain.leftMaster().enableControl();
 //		Robot.drivetrain.rightMaster().enableControl();
 		
-		Robot.drivetrain.leftMaster.setPID(prefs.getDouble("AutoDriveP", 0.2), 0, 0);
-		Robot.drivetrain.rightMaster.setPID(prefs.getDouble("AutoDriveP", 0.2), 0, 0);
+		Robot.drivetrain.leftMaster.setPID(Robot.prefs.getDouble("AutoDriveP", 0.2), 0, 0);
+		Robot.drivetrain.rightMaster.setPID(Robot.prefs.getDouble("AutoDriveP", 0.2), 0, 0);
 		
 		Robot.drivetrain.leftMaster.set(distance);
 		Robot.drivetrain.rightMaster.set(-distance);
