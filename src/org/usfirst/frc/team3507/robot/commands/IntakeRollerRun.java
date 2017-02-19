@@ -10,11 +10,11 @@ public class IntakeRollerRun extends Command {
 	Preferences prefs = Preferences.getInstance();
 	
 	public IntakeRollerRun() {
-		requires(Robot.Intake);
+		requires(Robot.intake);
 	}
 	
 	protected void execute() {
-		Robot.Intake.go(prefs.getDouble("Intake Speed", .5));
+		Robot.intake.go(prefs.getDouble("Intake Speed", .5));
 	}
 	
 	protected boolean isFinished() {
@@ -23,7 +23,7 @@ public class IntakeRollerRun extends Command {
 	}
 	
 	protected void end() {
-		Robot.Intake.stop();
+		Robot.intake.stop();
 	}
 	
 	protected void interrupted() {

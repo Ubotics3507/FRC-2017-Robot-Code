@@ -7,24 +7,22 @@ import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class ElevatorIntake extends Subsystem {
-
-	public CANTalon elevator = new CANTalon(RobotMap.elevatorMotor);
+public class Climber extends Subsystem {
 	
-	public ElevatorIntake() {
-		elevator.enableBrakeMode(true);
-	}
+	public CANTalon climber = new CANTalon(RobotMap.climberMotor);
 
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
+		
 	}
 	
 	public void go(double speed) {
-    	elevator.set(speed);
-    }
+		climber.set(speed);
+	}
+
 	
-    public void stop() {
-    	elevator.set(0);
-    }
+	public void stop() {
+		climber.set(0);
+	}
 }

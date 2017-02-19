@@ -3,6 +3,7 @@ package org.usfirst.frc.team3507.robot;
 import org.usfirst.frc.team3507.robot.commands.AutoDistance;
 import org.usfirst.frc.team3507.robot.commands.AutoDriveTime;
 import org.usfirst.frc.team3507.robot.commands.AutoShootCommand;
+import org.usfirst.frc.team3507.robot.subsystems.Climber;
 import org.usfirst.frc.team3507.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3507.robot.subsystems.ElevatorIntake;
 import org.usfirst.frc.team3507.robot.subsystems.Flywheel;
@@ -36,8 +37,9 @@ public class Robot extends IterativeRobot {
 	public static final Flywheel flywheel = new Flywheel();
 	public static final ElevatorIntake elevator = new ElevatorIntake();
 	public static final Drivetrain drivetrain = new Drivetrain();
-	public static final IntakeRollers Intake = new IntakeRollers();
-	public static final IntakeArm Arm = new IntakeArm();
+	public static final IntakeRollers intake = new IntakeRollers();
+	public static final IntakeArm arm = new IntakeArm();
+	public static final Climber climber = new Climber();
 	public static OI oi;
 	public static AHRS gyro;
 	
