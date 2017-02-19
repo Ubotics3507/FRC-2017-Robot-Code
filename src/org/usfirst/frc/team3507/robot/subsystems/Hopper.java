@@ -19,7 +19,7 @@ public class Hopper extends Subsystem {
 
 	public void toggleHopper() {
 		up = !up;
-		if (up = !up) {
+		if (up) {
 			hopperSolenoid.set(DoubleSolenoid.Value.kReverse);
 		} else {
 			hopperSolenoid.set(DoubleSolenoid.Value.kForward);
@@ -29,7 +29,7 @@ public class Hopper extends Subsystem {
 	
 	public void setHopper(boolean up) {
 		this.up = up;
-		if (up = !up) {
+		if (up) {
 			hopperSolenoid.set(DoubleSolenoid.Value.kForward);
 		} else {
 			hopperSolenoid.set(DoubleSolenoid.Value.kReverse);

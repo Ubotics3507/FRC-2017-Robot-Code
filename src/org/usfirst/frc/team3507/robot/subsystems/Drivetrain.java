@@ -74,7 +74,7 @@ public class Drivetrain extends Subsystem {
 	
 	public void toggleHighGear() {
 		highGear = !highGear;
-		if (highGear = !highGear) {
+		if (highGear) {
 			driveSolenoid.set(DoubleSolenoid.Value.kReverse);
 		} else {
 			driveSolenoid.set(DoubleSolenoid.Value.kForward);
@@ -83,7 +83,7 @@ public class Drivetrain extends Subsystem {
 	
 	public void setHighGear(boolean highGear) {
 		this.highGear = highGear;
-		if (this.highGear == !highGear) {
+		if (highGear) {
 			driveSolenoid.set(DoubleSolenoid.Value.kForward);
 		} else {
 			driveSolenoid.set(DoubleSolenoid.Value.kReverse);
