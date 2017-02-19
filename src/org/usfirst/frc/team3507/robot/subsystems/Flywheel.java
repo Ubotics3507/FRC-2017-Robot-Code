@@ -35,6 +35,10 @@ public class Flywheel extends Subsystem {
 		flywheel.set(speed);
 	}
 	
+	public double flywheelSpeed() {
+		return speed;
+	}
+	
 	public void stop() {  
 		flywheel.set(0);
 	}

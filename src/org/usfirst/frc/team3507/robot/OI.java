@@ -54,8 +54,8 @@ public class OI {
 		driver.start.whenPressed(new ToggleHighGear());
 		driver.back.whenPressed(new ToggleHopper());
 		
-		operator.y.whileHeld(new FlywheelAdjust(true));
-		operator.a.whileHeld(new FlywheelAdjust(false));
+		operator.y.whenPressed(new FlywheelAdjust(true));
+		operator.a.whenPressed(new FlywheelAdjust(false));
 		operator.x.whileHeld(new FlywheelSet());
 	}
 	
