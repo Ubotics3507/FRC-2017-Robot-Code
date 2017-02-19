@@ -8,6 +8,7 @@ import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -18,6 +19,8 @@ public class Drivetrain extends Subsystem {
 	private RobotDrive robotDrive;
 	
 	private boolean highGear = false;
+	
+	Preferences prefs = Preferences.getInstance();
 	
 	//Sets all drivetrain Talons to named IDs
 	public CANTalon leftSlave = new CANTalon(RobotMap.leftSlave);
@@ -58,11 +61,11 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public void arcadeDrive(double move, double rotate) {
-		robotDrive.arcadeDrive(move, rotate, true);
+		robotDrive.arcadeDrive(move, rotate + prefs.getDouble("Right Speed Rotation", 0), true);
 	}
 	
 	public void tankDrive(double left, double right) {
-		robotDrive.tankDrive(left, right, true);
+		robotDrive.tankDrive(left, right * prefs.getDouble("Right Speed Decrease", 1), true);
 	}
 	
 	private void configureTalon(CANTalon talon, TalonControlMode mode, double initialValue) {
