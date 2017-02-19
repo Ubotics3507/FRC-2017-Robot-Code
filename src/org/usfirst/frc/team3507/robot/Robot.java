@@ -55,7 +55,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
 		
-		auto= new SendableChooser();
+		auto = new SendableChooser();
 		auto.addObject("Auto Drive Only ", new AutoDriveTime(4,0.5,0.5));
 		auto.addDefault("PID Straight ", new AutoDistance(10));
 		auto.addObject("Shoot", new AutoShootCommand());
@@ -87,31 +87,8 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
-    	
-//      autonomousCommand = (Command) chooser.getSelected();
-//      Command autoCommand = (Command) auto.getSelected();
-//    	autoCommand.start();
-//    	auto.int();
-//    	AutoDriveTime test = new AutoDriveTime(5,0.5,0.5);
-//    	test.execute();
-    	AutoShootCommand test = new AutoShootCommand();
-    	test.start();
-    	
- 
-    	
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
-    	
-    	// schedule the autonomous command (example)
-      //  if (autonomousCommand != null) autonomousCommand.start();
+        autonomousCommand = (Command) auto.getSelected();
+        autonomousCommand.start();
     }
 
     /**
