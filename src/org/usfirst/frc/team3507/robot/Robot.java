@@ -10,6 +10,8 @@ import org.usfirst.frc.team3507.robot.subsystems.Hopper;
 import org.usfirst.frc.team3507.robot.subsystems.IntakeArm;
 import org.usfirst.frc.team3507.robot.subsystems.IntakeRollers;
 
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -37,6 +39,7 @@ public class Robot extends IterativeRobot {
 	public static final IntakeRollers Intake = new IntakeRollers();
 	public static final IntakeArm Arm = new IntakeArm();
 	public static OI oi;
+	public static AHRS ahrs;
 	
 	public AutoDriveTime auton;
 
