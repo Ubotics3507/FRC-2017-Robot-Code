@@ -85,12 +85,14 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
     	
-//        autonomousCommand = (Command) chooser.getSelected();
-        Command autoCommand = (Command) auto.getSelected();
-    	autoCommand.start();
-    	//auto.int();
-    	AutoDriveTime test = new AutoDriveTime(5,0.5,0.5);
-    	test.execute();
+//      autonomousCommand = (Command) chooser.getSelected();
+//      Command autoCommand = (Command) auto.getSelected();
+//    	autoCommand.start();
+//    	auto.int();
+//    	AutoDriveTime test = new AutoDriveTime(5,0.5,0.5);
+//    	test.execute();
+    	AutoShootCommand test = new AutoShootCommand();
+    	test.start();
     	
  
     	

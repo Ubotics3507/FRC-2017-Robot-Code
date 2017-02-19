@@ -9,6 +9,8 @@ public class AutoShootCommand extends CommandGroup {
 
     public AutoShootCommand() {
     	
+    	addSequential(new AutoDriveTime(5, 0.5, 0.5));
+    	addSequential(new Delay(5));
     	addSequential(new AutoFlywheel(false));
     	addSequential(new Delay(1));
     	addSequential(new AutoElevator(false));
@@ -31,5 +33,9 @@ public class AutoShootCommand extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    }
+    
+    protected void execute() {
+    	
     }
 }

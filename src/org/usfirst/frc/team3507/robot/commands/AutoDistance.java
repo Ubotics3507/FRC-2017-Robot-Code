@@ -35,8 +35,8 @@ public class AutoDistance extends Command {
 //		Robot.drivetrain.leftMaster().enableControl();
 //		Robot.drivetrain.rightMaster().enableControl();
 		
-		Robot.drivetrain.leftMaster.setPID(prefs.getDouble("P", 0.2), 0, 0);
-		Robot.drivetrain.rightMaster.setPID(prefs.getDouble("P", 0.2), 0, 0);
+		Robot.drivetrain.leftMaster.setPID(prefs.getDouble("AutoDriveP", 0.2), 0, 0);
+		Robot.drivetrain.rightMaster.setPID(prefs.getDouble("AutoDriveP", 0.2), 0, 0);
 		
 		Robot.drivetrain.leftMaster.set(distance);
 		Robot.drivetrain.rightMaster.set(-distance);
