@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3507.robot;
 import org.usfirst.frc.team3507.robot.commands.AutoDistance;
 import org.usfirst.frc.team3507.robot.commands.AutoDriveTime;
+import org.usfirst.frc.team3507.robot.commands.AutoShootCommand;
 import org.usfirst.frc.team3507.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3507.robot.subsystems.ElevatorIntake;
 import org.usfirst.frc.team3507.robot.subsystems.Flywheel;
@@ -54,6 +55,7 @@ public class Robot extends IterativeRobot {
 		auto= new SendableChooser();
 		auto.addObject("Auto Drive Only ", new AutoDriveTime(4,0.5,0.5));
 		auto.addDefault("PID Straight ", new AutoDistance(10));
+		auto.addObject("Shoot", new AutoShootCommand());
 		SmartDashboard.putData("Auto mode", auto);
         
         SmartDashboard.putData(Scheduler.getInstance());

@@ -9,14 +9,19 @@ public class AutoFlywheel extends InstantCommand {
 
 	Preferences prefs = Preferences.getInstance();
 	
+	private boolean stop;
+	
 	public AutoFlywheel(boolean stop) {
-		if (stop) {
-			Robot.flywheel.stop();
-		}
+		this.stop = stop;
 	}
 	
 	protected void execute() {
-		Robot.flywheel.go(prefs.getDouble("Auto Flywheel Speed", 0.5));
+		if (stop) {
+			Robot.flywheel.stop();
+		} else {
+			Robot.flywheel.go(prefs.getDouble("Auto Flywheel Speed", 0.5));
+		}
+		
 	}
 	
 }
