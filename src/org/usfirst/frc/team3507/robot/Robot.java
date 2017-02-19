@@ -39,7 +39,7 @@ public class Robot extends IterativeRobot {
 	public static final IntakeRollers Intake = new IntakeRollers();
 	public static final IntakeArm Arm = new IntakeArm();
 	public static OI oi;
-	public static AHRS ahrs;
+	public static AHRS gyro;
 	
 	public AutoDriveTime auton;
 
@@ -141,6 +141,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("PositionR", Robot.drivetrain.rightMaster.getPosition());
 		SmartDashboard.putNumber("Flywheel Speed", Robot.flywheel.getSpeed());
 		SmartDashboard.putData("Compressor", mainCompressor);
+		SmartDashboard.putNumber("Gyro", gyro.getAngle());
     }
     
      

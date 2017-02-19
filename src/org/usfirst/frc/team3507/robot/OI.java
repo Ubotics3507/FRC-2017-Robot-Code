@@ -1,7 +1,9 @@
 package org.usfirst.frc.team3507.robot;
 
 import org.usfirst.frc.team3507.robot.commands.ElevatorRun;
+import org.usfirst.frc.team3507.robot.commands.FlywheelAdjust;
 import org.usfirst.frc.team3507.robot.commands.FlywheelRun;
+import org.usfirst.frc.team3507.robot.commands.FlywheelSet;
 import org.usfirst.frc.team3507.robot.commands.IntakeArmRun;
 import org.usfirst.frc.team3507.robot.commands.IntakeRollerRun;
 import org.usfirst.frc.team3507.robot.commands.ToggleHighGear;
@@ -41,6 +43,7 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
 	
 	public XboxControllerButtons driver = new XboxControllerButtons(RobotMap.driver);
+	public XboxControllerButtons operator = new XboxControllerButtons(RobotMap.operator);
 	
 	public OI() {
 		driver.a.whileHeld(new FlywheelRun());
@@ -50,6 +53,9 @@ public class OI {
 		driver.y.whileHeld(new IntakeRollerRun());
 		driver.start.whenPressed(new ToggleHighGear());
 		driver.back.whenPressed(new ToggleHopper());
+		
+		operator.a.whileHeld(new FlywheelAdjust());
+		operator.x.whileHeld(new FlywheelSet());
 	}
 	
 }

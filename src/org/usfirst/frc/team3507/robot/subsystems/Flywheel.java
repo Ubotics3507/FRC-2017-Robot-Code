@@ -15,6 +15,7 @@ public class Flywheel extends Subsystem {
 
 	public CANTalon flywheel = new CANTalon(RobotMap.shooterMotor);
 	
+	private double speed;
 	
 	public Flywheel() {
 		flywheel.enableBrakeMode(true);
@@ -30,7 +31,7 @@ public class Flywheel extends Subsystem {
 		
 	}
 	
-	public void go(double speed) {
+	public void go() {
 		flywheel.set(speed);
 	}
 	
@@ -40,5 +41,13 @@ public class Flywheel extends Subsystem {
 	
 	public double getSpeed() {
 		return flywheel.getSpeed();
+	}
+	
+	public void changeSpeed(double change) {
+		speed += change;
+	}
+	
+	public void setSpeed(double speed) {
+		this.speed = speed;
 	}
 }

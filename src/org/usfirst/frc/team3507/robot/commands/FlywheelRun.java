@@ -25,7 +25,7 @@ public class FlywheelRun extends Command {
 		Robot.flywheel.flywheel.setI(prefs.getDouble("FlywheelI", 0));
 		Robot.flywheel.flywheel.setD(prefs.getDouble("FlywheelD", 0));
 		Robot.flywheel.flywheel.setF(prefs.getDouble("FlywheelF", 0));
-		Robot.flywheel.go(prefs.getDouble("Flywheel Speed", .5));
+		Robot.flywheel.go();
 	}
 	
 	protected void end() {
