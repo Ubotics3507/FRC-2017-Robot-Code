@@ -48,9 +48,6 @@ public class OI {
 	public OI() {
 		driver.a.whileHeld(new FlywheelRun());
 		driver.b.whileHeld(new ElevatorRun());
-		driver.leftBumper.whileHeld(new IntakeArmRun(true));
-		driver.rightBumper.whileHeld(new IntakeArmRun(false));
-		driver.y.whileHeld(new IntakeRollerRun());
 		driver.start.whenPressed(new ToggleHighGear());
 		driver.back.whenPressed(new ToggleHopper());
 		

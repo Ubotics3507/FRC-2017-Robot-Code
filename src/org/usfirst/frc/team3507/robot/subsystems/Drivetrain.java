@@ -88,8 +88,6 @@ public class Drivetrain extends Subsystem {
 			driveSolenoid.set(DoubleSolenoid.Value.kForward);
 		} else {
 			driveSolenoid.set(DoubleSolenoid.Value.kReverse);
-			
-			
 		}
 	}
 	

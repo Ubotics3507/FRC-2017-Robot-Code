@@ -11,17 +11,19 @@ public class Climber extends Subsystem {
 	
 	public CANTalon climber = new CANTalon(RobotMap.climberMotor);
 
+	public Climber() {
+		climber.enableBrakeMode(true);
+	}
+	
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	public void go(double speed) {
 		climber.set(speed);
 	}
 
-	
 	public void stop() {
 		climber.set(0);
 	}

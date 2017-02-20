@@ -61,9 +61,10 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		auto = new SendableChooser();
-		auto.addObject("Auto Drive Only ", new AutoDriveTime(4,0.5,0.5));
+		auto.addObject("Auto Drive Only ", new AutoDriveTime(4,0.7,0.7));
 		auto.addDefault("PID Straight ", new AutoDistance(10));
 		auto.addObject("Shoot", new AutoShootCommand());
+		auto.addObject("Stand Still", null);
 		SmartDashboard.putData("Auto mode", auto);
         
         SmartDashboard.putData(Scheduler.getInstance());
