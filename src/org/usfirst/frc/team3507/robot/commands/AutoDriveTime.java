@@ -21,7 +21,7 @@ public class AutoDriveTime extends Command{
 	}
 	
 	public void execute() {
-		Robot.drivetrain.arcadeDrive(rightSpeed, leftSpeed);
+		Robot.drivetrain.tankDrive(rightSpeed, leftSpeed);
 	}
 	
 	public boolean isFinished() {

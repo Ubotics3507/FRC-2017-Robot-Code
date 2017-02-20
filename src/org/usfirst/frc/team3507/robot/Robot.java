@@ -92,10 +92,10 @@ public class Robot extends IterativeRobot {
 //      Command autoCommand = (Command) auto.getSelected();
 //    	autoCommand.start();
 //    	auto.int();
-//    	AutoDriveTime test = new AutoDriveTime(5,0.5,0.5);
-//    	test.execute();
-    	AutoShootCommand test = new AutoShootCommand();
+    	AutoDriveTime test = new AutoDriveTime(5,0.5,0.5);
     	test.start();
+//    	AutoShootCommand test = new AutoShootCommand();
+//    	test.start();
     	
  
     	
@@ -141,6 +141,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("PositionR", Robot.drivetrain.rightMaster.getPosition());
 		SmartDashboard.putNumber("Flywheel Speed", Robot.flywheel.getSpeed());
 		SmartDashboard.putData("Compressor", mainCompressor);
+		
+		SmartDashboard.putNumber("Flywheel Speed Setpoint", Robot.flywheel.flywheelSpeed());
     }
     
      

@@ -2,8 +2,6 @@ package org.usfirst.frc.team3507.robot.commands;
 
 import org.usfirst.frc.team3507.robot.Robot;
 
-import com.ctre.CANTalon.TalonControlMode;
-
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -25,7 +23,7 @@ public class FlywheelRun extends Command {
 		Robot.flywheel.flywheel.setI(prefs.getDouble("FlywheelI", 0));
 		Robot.flywheel.flywheel.setD(prefs.getDouble("FlywheelD", 0));
 		Robot.flywheel.flywheel.setF(prefs.getDouble("FlywheelF", 0));
-		Robot.flywheel.go(prefs.getDouble("Flywheel Speed", .5));
+		Robot.flywheel.go();
 	}
 	
 	protected void end() {

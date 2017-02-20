@@ -15,7 +15,7 @@ public class RobotMap {
 	public static int rightMaster = 4;
 	
 	public static int driver = 0;
-	public static int operator = 13;
+	public static int operator = 1;
 	
 	public static int armMotor = 10;
 	public static int intakeMotor = 9;
