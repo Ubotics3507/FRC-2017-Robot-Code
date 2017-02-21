@@ -1,11 +1,10 @@
 package org.usfirst.frc.team3507.robot;
 
+import org.usfirst.frc.team3507.robot.commands.ClimberRun;
 import org.usfirst.frc.team3507.robot.commands.ElevatorRun;
 import org.usfirst.frc.team3507.robot.commands.FlywheelAdjust;
 import org.usfirst.frc.team3507.robot.commands.FlywheelRun;
 import org.usfirst.frc.team3507.robot.commands.FlywheelSet;
-import org.usfirst.frc.team3507.robot.commands.IntakeArmRun;
-import org.usfirst.frc.team3507.robot.commands.IntakeRollerRun;
 import org.usfirst.frc.team3507.robot.commands.ToggleHighGear;
 import org.usfirst.frc.team3507.robot.commands.ToggleHopper;
 import org.usfirst.frc.team3507.robot.util.XboxControllerButtons;
@@ -46,18 +45,18 @@ public class OI {
 	public XboxControllerButtons operator = new XboxControllerButtons(RobotMap.operator);
 	
 	public OI() {
-		operator.leftTrigger.whileHeld(new FlywheelRun());
-		operator.rightTrigger.whileHeld(new ElevatorRun());
-		
 //		driver.leftBumper.whileHeld(new IntakeArmRun(true));
 //		driver.rightBumper.whileHeld(new IntakeArmRun(false));
 //		driver.y.whileHeld(new IntakeRollerRun());
 		driver.a.whenPressed(new ToggleHighGear());
 		driver.b.whenPressed(new ToggleHopper());
+		driver.rightTrigger.whileHeld(new ClimberRun());
 		
 		operator.y.whenPressed(new FlywheelAdjust(false));
 		operator.a.whenPressed(new FlywheelAdjust(true));
 		operator.x.whenPressed(new FlywheelSet());
+		operator.leftTrigger.whileHeld(new FlywheelRun());
+		operator.rightTrigger.whileHeld(new ElevatorRun());
 	}
 	
 }

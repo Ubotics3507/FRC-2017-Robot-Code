@@ -29,11 +29,11 @@ public class TurnAround extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	prefs = Preferences.getInstance();
-    	turnPID = new PIDController(prefs.getDouble("Flip P", 0.01), prefs.getDouble("Flip I", 0.0), prefs.getDouble("Flip D", 0.0), Robot.ahrs, new TurnPIDOutput());
+    	turnPID = new PIDController(prefs.getDouble("Flip P", 0.01), prefs.getDouble("Flip I", 0.0), prefs.getDouble("Flip D", 0.0), Robot.gyro, new TurnPIDOutput());
     	turnPID.setContinuous(true);
     	turnPID.setInputRange(0, 360);
     	turnPID.setOutputRange(-0.5, 0.5);
-    	setpoint = Robot.ahrs.getAngle() + deltaAngle;
+    	setpoint = Robot.gyro.getAngle() + deltaAngle;
     	setpoint = setpoint>360?setpoint-360:setpoint;
     	turnPID.setSetpoint(setpoint);
     	turnPID.setAbsoluteTolerance(prefs.getDouble("Gyro Tolerance", 5));
@@ -46,7 +46,7 @@ public class TurnAround extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if (!running) {
-        	setpoint = Robot.ahrs.getAngle() + deltaAngle;
+        	setpoint = Robot.gyro.getAngle() + deltaAngle;
         	setpoint = setpoint>360?setpoint-360:setpoint;
         	if (setpoint < 0) setpoint += 360;
         	turnPID.setSetpoint(setpoint);
@@ -61,7 +61,7 @@ public class TurnAround extends Command {
     	if(isTimedOut()) {
     		return true;
     	}
-    	double gyroDif = Math.abs(Robot.ahrs.getAngle() - setpoint);
+    	double gyroDif = Math.abs(Robot.gyro.getAngle() - setpoint);
 //    	SmartDashboard.putNumber("Gyro Dif", gyroDif);
     	if (count == maxArraySize) {
     		sum -= difs[index];

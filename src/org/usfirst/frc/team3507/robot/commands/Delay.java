@@ -1,9 +1,12 @@
 package org.usfirst.frc.team3507.robot.commands;
 
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class Delay extends Command {
 
+	Preferences prefs = Preferences.getInstance();
+	
 	public Delay(double sec) {
         setTimeout(sec);
     }

@@ -14,16 +14,26 @@ public class AutoDistance extends Command {
 	
 	private double tolerance;
 	
-	public AutoDistance(double distance) {
+	Preferences prefs = Preferences.getInstance();
+	public AutoDistance() {
 		requires(Robot.drivetrain);
-		Preferences prefs = Preferences.getInstance();
 		
-		this.distance = distance;
+		
+		distance = prefs.getDouble("AutoDistance", 0);
 		this.tolerance = prefs.getDouble("tolerance", 10);
 	}
 	
+//	public AutoDistance(double distance) {
+//		requires(Robot.drivetrain);
+//		this.distance = distance;
+//		this.tolerance = prefs.getDouble("tolerance", 10);
+//	}
+	
 	protected void initialize() {
 		
+		Robot.drivetrain.leftMaster.setVoltageRampRate(6);
+		Robot.drivetrain.rightMaster.setVoltageRampRate(6);
+		Robot.drivetrain.setHighGear(true);
 		Robot.drivetrain.leftMaster.setPosition(0);
 		Robot.drivetrain.rightMaster.setPosition(0);
 	}
@@ -35,8 +45,8 @@ public class AutoDistance extends Command {
 //		Robot.drivetrain.leftMaster().enableControl();
 //		Robot.drivetrain.rightMaster().enableControl();
 		
-		Robot.drivetrain.leftMaster.setPID(prefs.getDouble("AutoDriveP", 0.2), 0, 0);
-		Robot.drivetrain.rightMaster.setPID(prefs.getDouble("AutoDriveP", 0.2), 0, 0);
+		Robot.drivetrain.leftMaster.setPID(prefs.getDouble("AutoDriveP", 0.1), prefs.getDouble("AutoDriveI", 0), 0);
+		Robot.drivetrain.rightMaster.setPID(prefs.getDouble("AutoDriveP", 0.1), prefs.getDouble("AutoDriveI", 0), 0);
 		
 		Robot.drivetrain.leftMaster.set(distance);
 		Robot.drivetrain.rightMaster.set(-distance);
@@ -56,6 +66,8 @@ public class AutoDistance extends Command {
 	protected void end(){
 		Robot.drivetrain.leftMaster.changeControlMode(TalonControlMode.PercentVbus);
 		Robot.drivetrain.rightMaster.changeControlMode(TalonControlMode.PercentVbus);
+		Robot.drivetrain.leftMaster.setVoltageRampRate(0);
+		Robot.drivetrain.rightMaster.setVoltageRampRate(0);
 	}
 
 

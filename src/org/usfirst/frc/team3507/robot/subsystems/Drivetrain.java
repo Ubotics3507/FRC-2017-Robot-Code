@@ -44,6 +44,9 @@ public class Drivetrain extends Subsystem {
     	leftMaster.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	rightMaster.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	
+    	leftMaster.reverseSensor(true);
+    	rightMaster.reverseSensor(true);
+    	
     	robotDrive = new RobotDrive(leftMaster, rightMaster);
     	robotDrive.setSafetyEnabled(false);
     }

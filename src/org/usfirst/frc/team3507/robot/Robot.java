@@ -3,6 +3,10 @@ package org.usfirst.frc.team3507.robot;
 import org.usfirst.frc.team3507.robot.commands.AutoDistance;
 import org.usfirst.frc.team3507.robot.commands.AutoDriveTime;
 import org.usfirst.frc.team3507.robot.commands.AutoShootCommand;
+import org.usfirst.frc.team3507.robot.commands.FullyAuto;
+import org.usfirst.frc.team3507.robot.commands.ShootDistance;
+import org.usfirst.frc.team3507.robot.commands.TurnAround;
+import org.usfirst.frc.team3507.robot.subsystems.Climber;
 import org.usfirst.frc.team3507.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3507.robot.subsystems.ElevatorIntake;
 import org.usfirst.frc.team3507.robot.subsystems.Flywheel;
@@ -14,6 +18,7 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -38,8 +43,10 @@ public class Robot extends IterativeRobot {
 	public static final Drivetrain drivetrain = new Drivetrain();
 	public static final IntakeRollers Intake = new IntakeRollers();
 	public static final IntakeArm Arm = new IntakeArm();
+	public static final Climber climber = new Climber();
 	public static OI oi;
-	public static AHRS ahrs;
+	public static AHRS gyro;
+	
 	
 	public AutoDriveTime auton;
 
@@ -55,10 +62,16 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
 		
+		gyro = new AHRS(SerialPort.Port.kMXP);
+		gyro.reset();
+		
 		auto= new SendableChooser();
 		auto.addObject("Auto Drive Only ", new AutoDriveTime(4,0.5,0.5));
-		auto.addDefault("PID Straight ", new AutoDistance(10));
+		auto.addDefault("PID Straight ", new AutoDistance());
 		auto.addObject("Shoot", new AutoShootCommand());
+		auto.addObject("Shoot Move", new ShootDistance());
+		auto.addObject("Gyro", new TurnAround(90, 2));
+		auto.addObject("Fully Auto", new FullyAuto());
 		SmartDashboard.putData("Auto mode", auto);
         
         SmartDashboard.putData(Scheduler.getInstance());
@@ -88,12 +101,11 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
     	
-//      autonomousCommand = (Command) chooser.getSelected();
-//      Command autoCommand = (Command) auto.getSelected();
-//    	autoCommand.start();
-//    	auto.int();
-    	AutoDriveTime test = new AutoDriveTime(5,0.5,0.5);
-    	test.start();
+      autonomousCommand = (Command) auto.getSelected();
+      autonomousCommand.start();
+    	//AutoDriveTime test = new AutoDriveTime(10,-0.5,-0.5);
+//    	AutoDistance test = new AutoDistance(-5000);
+//    	test.start();
 //    	AutoShootCommand test = new AutoShootCommand();
 //    	test.start();
     	
@@ -119,6 +131,12 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("Left", Robot.drivetrain.leftMaster.getSpeed());
+		SmartDashboard.putNumber("Right", Robot.drivetrain.rightMaster.getSpeed());
+		SmartDashboard.putNumber("PositionL", Robot.drivetrain.leftMaster.getPosition());
+		SmartDashboard.putNumber("PositionR", Robot.drivetrain.rightMaster.getPosition());
+		SmartDashboard.putNumber("Gyro", Robot.gyro.getAngle());
+		SmartDashboard.putData(Scheduler.getInstance());
     }
 
     public void teleopInit() {
@@ -141,6 +159,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("PositionR", Robot.drivetrain.rightMaster.getPosition());
 		SmartDashboard.putNumber("Flywheel Speed", Robot.flywheel.getSpeed());
 		SmartDashboard.putData("Compressor", mainCompressor);
+		SmartDashboard.putNumber("Gyro", Robot.gyro.getAngle());
 		
 		SmartDashboard.putNumber("Flywheel Speed Setpoint", Robot.flywheel.flywheelSpeed());
     }

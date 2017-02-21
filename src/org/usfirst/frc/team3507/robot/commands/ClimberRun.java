@@ -5,32 +5,25 @@ import org.usfirst.frc.team3507.robot.Robot;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class IntakeArmRun extends Command{
-
+public class ClimberRun extends Command {
+	
 	Preferences prefs = Preferences.getInstance();
 	
-	public boolean reverse;
-	
-	public IntakeArmRun(boolean reverse) {
-		requires(Robot.Arm);
-		this.reverse = reverse;
+	public ClimberRun() {
+		requires(Robot.climber);
+		
 	}
-	
 	protected void execute() {
-		if (reverse == false) {
-			Robot.Arm.go(prefs.getDouble("Intake Speed", .5));
-		} else {
-			Robot.Arm.go(-prefs.getDouble("Intake Speed", .5));
-		}
+		Robot.climber.go(prefs.getDouble("Climber Speed", .5));
 	}
-	
+	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	protected void end() {
-		Robot.Arm.stop();
+		Robot.climber.stop();
 	}
 	
 	protected void interrupted() {
