@@ -62,6 +62,8 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
 		
+		Robot.drivetrain.setHighGear(true);
+		
 		gyro = new AHRS(SerialPort.Port.kMXP);
 		gyro.reset();
 		
@@ -83,7 +85,9 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
      */
     public void disabledInit(){
-
+    	if (autonomousCommand != null) {
+    		autonomousCommand.cancel();
+    	}
     }
 	
 	public void disabledPeriodic() {

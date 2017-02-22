@@ -9,16 +9,17 @@ public class FullyAuto extends CommandGroup {
 
     public FullyAuto() {
     	
-//    	addSequential(new AutoDistance(20000));
-//    	addSequential(new TurnAround(-60, 2));
-//    	addSequential(new AutoDistance(10000));
-//    	addSequential(new Delay(1));
-//    	addSequential(new AutoDistance(-10000));
-//    	addSequential(new TurnAround(-30, 1));
-//    	addSequential(new AutoDistance(10000));
-//    	addParallel(new AutoFlywheel(false));
-//    	addParallel(new Delay(1));
-//    	addSequential(new AutoElevator(false));	
+    	addSequential(new AutoDistance(29000));
+    	addSequential(new TurnAround(30, 1));
+    	addParallel(new Delay(1));
+    	addSequential(new AutoDistance(6000));
+    	addSequential(new Delay(1));
+    	addSequential(new AutoDistance(-6000));
+    	addSequential(new TurnAround(200, 5));
+    	addSequential(new AutoDistance(28000));
+    	addParallel(new AutoFlywheel(false));
+    	addParallel(new Delay(0.5));
+    	addSequential(new AutoElevator(false));	
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

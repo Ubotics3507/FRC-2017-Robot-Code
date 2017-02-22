@@ -19,7 +19,7 @@ public class FlywheelAdjust extends InstantCommand {
 		if (!backwards) {
 			Robot.flywheel.changeSpeed(prefs.getDouble("Flywheel Adjust", 100));
 		} else {
-			Robot.flywheel.changeSpeed(prefs.getDouble("Flywheel Adjust", -100));
+			Robot.flywheel.changeSpeed(-prefs.getDouble("Flywheel Adjust", 100));
 		}
 	}
 	

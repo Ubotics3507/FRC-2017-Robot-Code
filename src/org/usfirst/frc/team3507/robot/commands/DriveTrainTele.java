@@ -25,9 +25,9 @@ public class DriveTrainTele extends Command {
         requires(Robot.drivetrain);
         
         tele = new SendableChooser<>();
-    	tele.addDefault("Arcade Mode", DriveControlType.ARCADE);
+    	tele.addObject("Arcade Mode", DriveControlType.ARCADE);
     	tele.addObject("Tank Mode", DriveControlType.TANK);
-    	tele.addObject("Arcade Split", DriveControlType.ARCADE_SPLIT);
+    	tele.addDefault("Arcade Split", DriveControlType.ARCADE_SPLIT);
     	tele.addObject("Paralyze", DriveControlType.PARALYZE);
     	SmartDashboard.putData("Drivetrain", tele);
 

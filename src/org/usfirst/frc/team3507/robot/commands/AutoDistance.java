@@ -17,17 +17,15 @@ public class AutoDistance extends Command {
 	Preferences prefs = Preferences.getInstance();
 	public AutoDistance() {
 		requires(Robot.drivetrain);
-		
-		
 		distance = prefs.getDouble("AutoDistance", 0);
 		this.tolerance = prefs.getDouble("tolerance", 10);
 	}
 	
-//	public AutoDistance(double distance) {
-//		requires(Robot.drivetrain);
-//		this.distance = distance;
-//		this.tolerance = prefs.getDouble("tolerance", 10);
-//	}
+	public AutoDistance(double distance) {
+		requires(Robot.drivetrain);
+		this.distance = distance;
+		this.tolerance = prefs.getDouble("tolerance", 10);
+	}
 	
 	protected void initialize() {
 		

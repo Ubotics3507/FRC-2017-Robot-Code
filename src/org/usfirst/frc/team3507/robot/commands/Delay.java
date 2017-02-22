@@ -6,10 +6,16 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Delay extends Command {
 
 	Preferences prefs = Preferences.getInstance();
+	double sec;
 	
 	public Delay(double sec) {
+		this.sec = sec;
         setTimeout(sec);
     }
+	
+	public Delay() {
+		sec = prefs.getInt("Delay", 0);
+	}
 
     // Called just before this Command runs the first time
     protected void initialize() {
