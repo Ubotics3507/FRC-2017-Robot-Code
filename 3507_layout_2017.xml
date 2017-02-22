@@ -1,0 +1,64 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="Flywheel Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="915" y="201"/>
+	</widget>
+	<widget field="Flywheel Speed Setpoint" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
+		<location x="756" y="13"/>
+		<width>291</width>
+		<height>162</height>
+		<property name="Upper Limit" value="2500.0"/>
+		<property name="Lower Limit" value="1500.0"/>
+		<property name="Tick Interval" value="50.0"/>
+	</widget>
+	<widget field="Compressor" type="Compressor" class="edu.wpi.first.smartdashboard.livewindow.elements.DigitalOutputController">
+		<location x="0" y="323"/>
+	</widget>
+	<widget field="Gyro" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="81"/>
+	</widget>
+	<widget field="Right Error" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="60"/>
+	</widget>
+	<widget field="Left Error" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="39"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
+		<location x="1047" y="3"/>
+		<width>313</width>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.MjpgStreamViewerImpl">
+		<location x="284" y="0"/>
+		<width>476</width>
+		<height>333</height>
+		<property name="MJPG Server URL" value="http://axis-camera.local/mjpg/video.mjpg"/>
+	</static-widget>
+	<widget field="PositionR" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="281"/>
+	</widget>
+	<widget field="PositionL" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="0" y="260"/>
+	</widget>
+	<widget field="Right" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="2" y="239"/>
+	</widget>
+	<widget field="Left" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="5" y="218"/>
+		<width>106</width>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
+		<location x="225" y="257"/>
+	</static-widget>
+	<widget field="Drivetrain" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="0" y="105"/>
+	</widget>
+	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="114" y="124"/>
+	</widget>
+	<widget field="Scheduler" type="Scheduler" class="edu.wpi.first.smartdashboard.gui.elements.Scheduler">
+		<location x="0" y="0"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>
