@@ -4,7 +4,9 @@ import org.usfirst.frc.team3507.robot.commands.AutoDistance;
 import org.usfirst.frc.team3507.robot.commands.AutoDriveTime;
 import org.usfirst.frc.team3507.robot.commands.AutoShootCommand;
 import org.usfirst.frc.team3507.robot.commands.FullyAuto;
+import org.usfirst.frc.team3507.robot.commands.HopperShootBlue;
 import org.usfirst.frc.team3507.robot.commands.ShootDistance;
+import org.usfirst.frc.team3507.robot.commands.ShootDistanceRed;
 import org.usfirst.frc.team3507.robot.commands.TurnAround;
 import org.usfirst.frc.team3507.robot.subsystems.Climber;
 import org.usfirst.frc.team3507.robot.subsystems.Drivetrain;
@@ -16,6 +18,7 @@ import org.usfirst.frc.team3507.robot.subsystems.IntakeRollers;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.SerialPort;
@@ -38,6 +41,7 @@ public class Robot extends IterativeRobot {
 	
 	Compressor mainCompressor = new Compressor(0);
 	public static final Hopper hopper = new Hopper();
+	//public static final Hopper gearArm = new Hopper();
 	public static final Flywheel flywheel = new Flywheel();
 	public static final ElevatorIntake elevator = new ElevatorIntake();
 	public static final Drivetrain drivetrain = new Drivetrain();
@@ -62,6 +66,8 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
 		
+		CameraServer.getInstance().startAutomaticCapture();
+		
 		Robot.drivetrain.setHighGear(true);
 		
 		gyro = new AHRS(SerialPort.Port.kMXP);
@@ -72,7 +78,9 @@ public class Robot extends IterativeRobot {
 		auto.addDefault("PID Straight ", new AutoDistance());
 		auto.addObject("Shoot", new AutoShootCommand());
 		auto.addObject("Shoot Move", new ShootDistance());
-		auto.addObject("Gyro", new TurnAround(90, 2));
+		auto.addObject("Shoot Move Red", new ShootDistanceRed());
+		auto.addObject("Blue Hooper Shoot", new HopperShootBlue());
+		auto.addObject("Gyro", new TurnAround(180, 2));
 		auto.addObject("Fully Auto", new FullyAuto());
 		SmartDashboard.putData("Auto mode", auto);
         

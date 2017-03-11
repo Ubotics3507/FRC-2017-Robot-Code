@@ -14,7 +14,7 @@ public class AutoShootCommand extends CommandGroup {
     	addSequential(new AutoFlywheel(false));
     	addSequential(new Delay(1));
     	addSequential(new AutoElevator(false));
-    	addSequential(new Delay(9));
+    	addSequential(new Delay(8));
     	addSequential(new AutoFlywheel(true));
     	addSequential(new AutoElevator(true));
         // Add Commands here:

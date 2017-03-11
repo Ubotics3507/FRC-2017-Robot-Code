@@ -19,6 +19,7 @@ public class AutoFlywheel extends InstantCommand {
 		if (stop) {
 			Robot.flywheel.stop();
 		} else {
+			//Robot.flywheel.PIDgo();
 			Robot.flywheel.go();
 		}
 		

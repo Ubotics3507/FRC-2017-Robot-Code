@@ -10,7 +10,7 @@ public class ShootDistance extends CommandGroup {
     public ShootDistance() {
     	
     	addSequential(new AutoShootCommand());
-    	addSequential(new AutoDistance());
+    	addSequential(new AutoDriveTime(3, .70, .70));
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

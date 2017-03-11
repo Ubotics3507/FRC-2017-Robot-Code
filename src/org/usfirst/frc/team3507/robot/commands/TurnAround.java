@@ -32,7 +32,7 @@ public class TurnAround extends Command {
     	turnPID = new PIDController(prefs.getDouble("Flip P", 0.01), prefs.getDouble("Flip I", 0.0), prefs.getDouble("Flip D", 0.0), Robot.gyro, new TurnPIDOutput());
     	turnPID.setContinuous(true);
     	turnPID.setInputRange(0, 360);
-    	turnPID.setOutputRange(-0.5, 0.5);
+    	turnPID.setOutputRange(-0.63, 0.63);
     	setpoint = Robot.gyro.getAngle() + deltaAngle;
     	setpoint = setpoint>360?setpoint-360:setpoint;
     	turnPID.setSetpoint(setpoint);

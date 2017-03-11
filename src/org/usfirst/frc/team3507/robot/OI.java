@@ -55,9 +55,9 @@ public class OI {
 		operator.y.whenPressed(new FlywheelAdjust(false));
 		operator.a.whenPressed(new FlywheelAdjust(true));
 		operator.x.whenPressed(new FlywheelSet());
-		operator.leftTrigger.whileHeld(new FlywheelRun());
+		operator.rightBumper.whileHeld(new FlywheelRun());
 		operator.rightTrigger.whileHeld(new ElevatorRun(true));
-		operator.rightBumper.whileHeld(new ElevatorRun(false));
+		operator.b.whileHeld(new ElevatorRun(false));
 	}
 	
 }
