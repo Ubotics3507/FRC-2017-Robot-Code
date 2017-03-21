@@ -57,6 +57,7 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     
    public static SendableChooser auto;
+   public static SendableChooser flywheelSpeed;
     
 
     /**
@@ -80,10 +81,15 @@ public class Robot extends IterativeRobot {
 		auto.addObject("Shoot Move", new ShootDistance());
 		auto.addObject("Shoot Move Red", new ShootDistanceRed());
 		auto.addObject("Blue Hooper Shoot", new HopperShootBlue());
-		auto.addObject("Gyro", new TurnAround(180, 2));
+		auto.addObject("Gyro", new TurnAround(180, 4));
 		auto.addObject("Fully Auto", new FullyAuto());
 		SmartDashboard.putData("Auto mode", auto);
-        
+		
+//		flywheelSpeed = new SendableChooser();
+//  		flywheelSpeed.addObject("Outer side", new );
+//		flywheelSpeed.addDefault("Middle", Flywheel.middle_Side_speed());
+//		flywheelSpeed.addObject("Inner side", Flywheel.inner_Side_speed());
+		
         SmartDashboard.putData(Scheduler.getInstance());
     }
 	

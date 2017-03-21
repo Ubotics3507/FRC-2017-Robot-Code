@@ -9,8 +9,31 @@ public class ShootDistance extends CommandGroup {
 
     public ShootDistance() {
     	
+    	/*
+    	 * For Blue eleminations
+    	 * */
+    	 
     	addSequential(new AutoShootCommand());
-    	addSequential(new AutoDriveTime(3, .70, .70));
+    	addSequential(new AutoDistance(3000));
+		addSequential(new TurnAround(-35, 2));
+		////addSequential(new AutoDistance(15000));
+    	addSequential(new AutoDriveTime(4, .55, .55));
+    	//addSequential(new TurnAround(-95, 2));
+    	//addSequential(new AutoDriveTime(2, .85, .85));
+    	
+    	/*
+    	 * For Blue 
+    	 * */
+    	
+//    	addSequential(new AutoShootCommand()); //for boiler side blue open field
+//    	addSequential(new AutoDistance(5000));
+//		addSequential(new TurnAround(20, 2));
+//		addSequential(new AutoDistance(10000));
+//    	addSequential(new TurnAround(-60, 2));
+//		addSequential(new AutoDriveTime(2, .65, .65));
+//		
+		
+    	//addSequential(new AutoDriveTime(3, .70, .70));
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

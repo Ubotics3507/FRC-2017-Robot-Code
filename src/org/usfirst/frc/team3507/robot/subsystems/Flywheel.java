@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Flywheel extends Subsystem {
 public CANTalon flywheel = new CANTalon(RobotMap.shooterMotor);
 	
-	private double speed;
+	private static double speed;//wasnt always static
 	//private double P, I, D, F;
 	//Preferences prefs = Preferences.getInstance();	
 	public Flywheel() {
@@ -24,8 +24,9 @@ public CANTalon flywheel = new CANTalon(RobotMap.shooterMotor);
 		flywheel.set(0);
 		
 		//speed = 1650;// middle
-		speed= 1550; //left side blue alliance(near boiler)
+		//speed= 1550; //left side blue alliance(near boiler)
 		//speed = 1800; // right side
+		speed =2000; // defualt
 	}
 	
 	@Override
@@ -60,6 +61,26 @@ public CANTalon flywheel = new CANTalon(RobotMap.shooterMotor);
 	
 	public void changeSpeed(double change) {
 		speed += change;
+	}
+	
+	public void middle_Side_speed() {
+		flywheel.set(1650); //1650
+		flywheel.setF(0.097);
+		flywheel.setP(0.097);
+		//flywheel.setI(0);
+		flywheel.setD(0);
+	}
+	
+	public void outer_Side_speed() {
+		flywheel.set(1800);
+	}
+	
+	public void inner_Side_speed() {
+		flywheel.set(1550);
+		flywheel.setF(0.097);
+		flywheel.setP(0.091);
+		//flywheel.setI(0);
+		flywheel.setD(0);
 	}
 	
 	public void setSpeed(double speed) {
