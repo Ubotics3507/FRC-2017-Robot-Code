@@ -50,7 +50,7 @@ public class DriveTrainTele extends Command {
     	case ARCADE_SPLIT:
     		jAxisRight = RobotUtil.deadzone(Robot.oi.driver.getX(Hand.kRight), deadzone);
 //    		jAxisRight += prefs.getDouble("Drivetrain right arcade multiplier", 0);
-        	jAxisLeft = RobotUtil.deadzone(Robot.oi.driver.getY(Hand.kLeft), deadzone);
+        	jAxisLeft = -RobotUtil.deadzone(Robot.oi.driver.getY(Hand.kLeft), deadzone);
         	Robot.drivetrain.arcadeDrive(jAxisLeft, jAxisRight);
         	break;
     	case TANK:

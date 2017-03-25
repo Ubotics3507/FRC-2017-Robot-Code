@@ -7,8 +7,8 @@ public class ShootDistanceRed extends CommandGroup {
 		/*
 		 * RED Eleminations
 		 */
-		//addSequential(new AutoShootCommand());
-		addSequential(new AutoDistance(-7000));
+		addSequential(new AutoShootCommand());
+		addSequential(new AutoDriveTime(1, -.15, -.15));;
 		addSequential(new TurnAround(45, 2));
 		//addSequential(new AutoDistance(-10000));
 		addSequential(new AutoDriveTime(2, -.65, -.65));

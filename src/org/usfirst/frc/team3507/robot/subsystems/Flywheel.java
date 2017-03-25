@@ -83,8 +83,26 @@ public CANTalon flywheel = new CANTalon(RobotMap.shooterMotor);
 		flywheel.setD(0);
 	}
 	
+	public void point_blank_speed() {
+		flywheel.set(1450);
+		flywheel.setF(0.097);
+		flywheel.setP(0.091);
+		//flywheel.setI(0);
+		flywheel.setD(0);
+		
+	}
+	
 	public void setSpeed(double speed) {
 		this.speed = speed;
 	}
 	
+	public void dashboardAutoSpeed() {
+		switch(Robot.flywheelSpeed.getSelected()){
+		case 0: outer_Side_speed(); break;
+		case 1: middle_Side_speed();break;
+		case 2: inner_Side_speed(); break;	
+		case 3: point_blank_speed(); break; 
+		
+		}
+	}
 }

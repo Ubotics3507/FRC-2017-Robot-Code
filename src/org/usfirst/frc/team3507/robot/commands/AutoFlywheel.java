@@ -28,7 +28,7 @@ public class AutoFlywheel extends InstantCommand {
 		} else {
 			//Robot.flywheel.PIDgo();
 			//Robot.flywheel.go();
-			Robot.flywheel.inner_Side_speed();//1550
+			Robot.flywheel.dashboardAutoSpeed();//1550
 			//Robot.flywheel.outer_Side_speed();//1800
 			//Robot.flywheel.middle_Side_speed();//1650
 			

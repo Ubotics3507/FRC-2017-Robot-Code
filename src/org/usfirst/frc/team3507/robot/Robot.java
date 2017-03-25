@@ -7,6 +7,8 @@ import org.usfirst.frc.team3507.robot.commands.FullyAuto;
 import org.usfirst.frc.team3507.robot.commands.HopperShootBlue;
 import org.usfirst.frc.team3507.robot.commands.ShootDistance;
 import org.usfirst.frc.team3507.robot.commands.ShootDistanceRed;
+import org.usfirst.frc.team3507.robot.commands.ShootDistanceStraightBlue;
+import org.usfirst.frc.team3507.robot.commands.ShootDistanceStraightRed;
 import org.usfirst.frc.team3507.robot.commands.TurnAround;
 import org.usfirst.frc.team3507.robot.subsystems.Climber;
 import org.usfirst.frc.team3507.robot.subsystems.Drivetrain;
@@ -57,7 +59,7 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     
    public static SendableChooser auto;
-   public static SendableChooser flywheelSpeed;
+   public static SendableChooser<Integer> flywheelSpeed;
     
 
     /**
@@ -83,12 +85,16 @@ public class Robot extends IterativeRobot {
 		auto.addObject("Blue Hooper Shoot", new HopperShootBlue());
 		auto.addObject("Gyro", new TurnAround(180, 4));
 		auto.addObject("Fully Auto", new FullyAuto());
+		auto.addObject("Shoot Straight Red", new ShootDistanceStraightRed());
+		auto.addObject("Shoot Straight Blue", new ShootDistanceStraightBlue());
 		SmartDashboard.putData("Auto mode", auto);
 		
-//		flywheelSpeed = new SendableChooser();
-//  		flywheelSpeed.addObject("Outer side", new );
-//		flywheelSpeed.addDefault("Middle", Flywheel.middle_Side_speed());
-//		flywheelSpeed.addObject("Inner side", Flywheel.inner_Side_speed());
+		flywheelSpeed = new SendableChooser<>();
+  		flywheelSpeed.addObject("Outer side", 0 );
+		flywheelSpeed.addDefault("Middle", 1);
+		flywheelSpeed.addObject("Inner side", 2);
+		flywheelSpeed.addObject("point_blank", 3);
+		SmartDashboard.putData("Auto Flywheel Speed", flywheelSpeed);
 		
         SmartDashboard.putData(Scheduler.getInstance());
     }

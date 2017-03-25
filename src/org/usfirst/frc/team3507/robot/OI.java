@@ -1,10 +1,12 @@
 package org.usfirst.frc.team3507.robot;
 
+import org.usfirst.frc.team3507.robot.commands.ArmMotor;
 import org.usfirst.frc.team3507.robot.commands.ClimberRun;
 import org.usfirst.frc.team3507.robot.commands.ElevatorRun;
 import org.usfirst.frc.team3507.robot.commands.FlywheelAdjust;
 import org.usfirst.frc.team3507.robot.commands.FlywheelRun;
 import org.usfirst.frc.team3507.robot.commands.FlywheelSet;
+import org.usfirst.frc.team3507.robot.commands.RollerIntake;
 import org.usfirst.frc.team3507.robot.commands.ToggleHighGear;
 import org.usfirst.frc.team3507.robot.commands.ToggleHopper;
 import org.usfirst.frc.team3507.robot.util.XboxControllerButtons;
@@ -57,7 +59,11 @@ public class OI {
 		operator.x.whenPressed(new FlywheelSet());
 		operator.rightBumper.whileHeld(new FlywheelRun());
 		operator.rightTrigger.whileHeld(new ElevatorRun(true));
+		
 		operator.b.whileHeld(new ElevatorRun(false));
+		
+		operator.leftBumper.whileHeld(new RollerIntake(false));
+		operator.leftTrigger.whileHeld(new RollerIntake(true));
 	}
 	
 }

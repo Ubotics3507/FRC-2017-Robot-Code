@@ -5,19 +5,19 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class ShootDistance extends CommandGroup {
+public class ShootDistanceStraightRed extends CommandGroup {
 
-    public ShootDistance() {
+    public ShootDistanceStraightRed() {
     	
     	/*
     	 * For Blue eleminations
     	 * */
     	 
     	addSequential(new AutoShootCommand());
-    	addSequential(new AutoDriveTime(1, .15, .15));
-		addSequential(new TurnAround(-35, 2));
+    	addSequential(new AutoDriveTime(2, -.6, -.605));
+		//addSequential(new TurnAround(-35, 2));
 		////addSequential(new AutoDistance(15000));
-    	addSequential(new AutoDriveTime(4, .55, .55));
+    	//addSequential(new AutoDriveTime(4, .55, .55));
     	//addSequential(new TurnAround(-95, 2));
     	//addSequential(new AutoDriveTime(2, .85, .85));
     	
